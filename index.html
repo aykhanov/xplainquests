@@ -4,6 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>XPlainQuests — квест на детский праздник за 5 минут</title>
+<meta name="keywords" content="квест для детей, квест на день рождения, квест дома, новогодний квест для детей, сценарий квеста, поиск сокровищ, квест в детском саду, квест в школе">
+<meta property="og:title" content="XPlainQuests — квест на детский праздник за 5 минут">
+<meta property="og:description" content="Задания под возраст детей, карточки для печати, приглашения и сертификаты. Дома, в садике, школе или на секции.">
+<meta property="og:type" content="website">
 <meta name="description" content="Готовый квест для детского праздника дома, в садике, школе или на секции: задания под возраст детей, загадки, карточки для печати, приглашения гостям и QR-коды.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800&family=Marck+Script&display=swap" rel="stylesheet">
@@ -26,6 +30,44 @@ body.th-ny .deco-strip{display:block;background-image:var(--garland)}
 body.th-pir .deco-strip{display:block;background-image:var(--waves);height:22px;background-size:auto 22px}
 body.th-spa .deco-strip{display:block;background-image:var(--stars);height:26px;background-size:auto 26px}
 
+/* ===== главная ===== */
+.logo{cursor:pointer}
+#landing{display:none}
+body.mode-landing #landing{display:block}
+body.mode-landing #wizard, body.mode-landing #resultScreen{display:none!important}
+.hero{background:linear-gradient(135deg,#1f6b45 0%,#16425b 55%,#3b1f6b 100%);color:#fff;border-radius:24px;padding:44px 34px;position:relative;overflow:hidden}
+.hero h1{font-size:40px;line-height:1.1;margin:0 0 14px;max-width:640px}
+.hero p{font-size:19px;max-width:600px;margin:0 0 24px;opacity:.95}
+.hero .cta{background:#f0a020;color:#1d1d1d;font-size:19px;padding:16px 26px;border-radius:14px}
+.hero .sub{display:block;margin-top:10px;font-size:14px;opacity:.85}
+.hero .emo{position:absolute;right:28px;top:26px;font-size:64px;line-height:1.25;text-align:center;opacity:.95}
+@media(max-width:760px){.hero{padding:30px 22px}.hero h1{font-size:30px}.hero .emo{display:none}}
+.lsec{margin-top:34px}
+.lsec h2{font-size:28px;margin:0 0 6px}
+.lsec .lead{color:var(--muted);margin:0 0 18px;font-size:16px}
+.steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:760px){.steps3,.feat{grid-template-columns:1fr}}
+.lcard{background:#fff;border-radius:18px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.lcard .n{width:34px;height:34px;border-radius:50%;background:#1f6b45;color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.lcard .ic{font-size:34px}
+.lcard b{display:block;font-size:17px;margin:6px 0 4px}
+.lcard p{margin:0;color:#444;font-size:15px}
+.ltheme{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:760px){.ltheme{grid-template-columns:repeat(2,1fr)}}
+.ltheme .tcard{padding:18px 10px}
+.ltheme .tcard .e{font-size:44px}
+.ltheme .tcard b{font-size:16px}
+.ltar{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+@media(max-width:900px){.ltar{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.ltar{grid-template-columns:1fr}}
+.ltar .tariff{cursor:default}
+.ltar .tariff ul{margin:6px 0 0;padding-left:18px;font-size:13px;color:#444}
+.faq details{background:#fff;border-radius:14px;padding:14px 18px;margin-bottom:8px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.faq summary{cursor:pointer;font-weight:700;font-size:16px}
+.faq p{margin:8px 0 0;color:#333}
+.bigcta{text-align:center;margin:34px 0 10px}
+.bigcta .btn{font-size:19px;padding:16px 28px;background:#f0a020;color:#1d1d1d}
 /* ===== общие ===== */
 .panel{background:#fff;border-radius:20px;padding:22px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:12px;padding:12px 18px;font-weight:700;cursor:pointer;background:var(--main);color:#fff;text-decoration:none}
@@ -306,6 +348,7 @@ footer a{color:inherit}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 </style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Нужно ли что-то покупать для квеста?", "acceptedAnswer": {"@type": "Answer", "text": "Нет. Вы отмечаете, что есть дома или под рукой, и в квест попадают только задания, для которых всё есть. Нужен принтер для карточек и небольшое сокровище в финале."}}, {"@type": "Question", "name": "Для какого возраста подходит?", "acceptedAnswer": {"@type": "Answer", "text": "Для детей от 4 до 13 лет. Задание попадает в квест, только если подходит и младшему, и старшему ребёнку."}}, {"@type": "Question", "name": "Сколько времени занимает подготовка?", "acceptedAnswer": {"@type": "Answer", "text": "Собрать квест — около 5 минут, распечатать и разложить карточки — 10–15 минут. Сам квест длится 30, 45 или 60 минут."}}, {"@type": "Question", "name": "Можно провести квест в детском саду или школе?", "acceptedAnswer": {"@type": "Answer", "text": "Да, тайники и задания подбираются под группу, класс или зал."}}, {"@type": "Question", "name": "Что, если дети не справятся с заданием?", "acceptedAnswer": {"@type": "Answer", "text": "Квест нельзя проиграть: у каждого задания есть упрощённые попытки и откуп, а у детей — жетоны для подсказок."}}]}</script>
 </head>
 <body>
 <div id="app">
@@ -318,6 +361,85 @@ footer a{color:inherit}
   </header>
 
   <!-- ================= МАСТЕР ================= -->
+
+  <div id="landing">
+    <section class="hero">
+      <div class="emo">🏴‍☠️<br>🎄 🚀<br>🦖</div>
+      <h1>Квест на детский праздник за 5 минут</h1>
+      <p>Задания под возраст ваших детей, загадки и шифры, карточки для печати, приглашения гостям и сертификаты. Дома, в садике, в школе или на секции — без аниматора и долгой подготовки.</p>
+      <button class="btn cta" data-start>✨ Собрать квест бесплатно</button>
+      <span class="sub">Без регистрации · всё готово к печати на обычном принтере</span>
+    </section>
+
+    <section class="lsec">
+      <h2>Как это работает</h2>
+      <p class="lead">Отвечаете на несколько вопросов — получаете готовый сценарий праздника.</p>
+      <div class="steps3">
+        <div class="lcard"><div class="n">1</div><b>Выберите тему</b><p>Пираты, космос, Новый год, детективы, школа волшебства, динозавры или супергерои.</p></div>
+        <div class="lcard"><div class="n">2</div><b>Расскажите о празднике</b><p>Сколько детей, какого возраста, где играете и что есть под рукой.</p></div>
+        <div class="lcard"><div class="n">3</div><b>Распечатайте и играйте</b><p>Разложите карточки по тайникам из списка, вручите детям письмо от героя — и квест начался.</p></div>
+      </div>
+    </section>
+
+    <section class="lsec">
+      <h2>Что вы получите</h2>
+      <p class="lead">Всё, что нужно взрослому, чтобы провести квест без подготовки.</p>
+      <div class="feat">
+        <div class="lcard"><div class="ic">📋</div><b>Сценарий для ведущего</b><p>Где спрятать каждую карточку, что подготовить, ответы и кодовые слова.</p></div>
+        <div class="lcard"><div class="ic">🃏</div><b>Карточки с заданиями</b><p>Загадки, шифры, подвижные и творческие испытания — строго под возраст детей.</p></div>
+        <div class="lcard"><div class="ic">💌</div><b>Приглашения гостям</b><p>Именные открытки для печати и текст для мессенджера с датой, адресом и дресс‑кодом.</p></div>
+        <div class="lcard"><div class="ic">📜</div><b>Письмо от героя</b><p>С него начинается игра: капитан, Дед Мороз или инспектор просит детей о помощи.</p></div>
+        <div class="lcard"><div class="ic">🏅</div><b>Сертификаты</b><p>С именами всех участников — для фото в финале и на память.</p></div>
+        <div class="lcard"><div class="ic">🎛️</div><b>Пульт ведущего</b><p>Таймер, звуки, табло для команд и подсказки на телефоне прямо во время праздника.</p></div>
+      </div>
+    </section>
+
+    <section class="lsec">
+      <h2>Темы квестов</h2>
+      <p class="lead">Своя история, герои и злодей, оформление карточек и сертификатов. Все персонажи придуманы нами.</p>
+      <div class="ltheme" id="landThemes"></div>
+    </section>
+
+    <section class="lsec">
+      <h2>Квест нельзя проиграть</h2>
+      <p class="lead">Не получилось с первого раза — задание становится проще, а ведущий помогает.</p>
+      <div class="feat">
+        <div class="lcard"><div class="ic">🪜</div><b>Три попытки</b><p>Каждая следующая проще: меньше времени, больше подсказок. После третьей — весёлый откуп, который провалить нельзя.</p></div>
+        <div class="lcard"><div class="ic">🛟</div><b>Жетоны спасения</b><p>Три жетона на весь квест: отдал ведущему — получил подсказку. Сбережённые жетоны в финале превращаются в бонусы.</p></div>
+        <div class="lcard"><div class="ic">⭐</div><b>Звёзды за испытания</b><p>Чем меньше попыток, тем больше звёзд. Для команд и личного зачёта — табло прямо на телефоне.</p></div>
+      </div>
+    </section>
+
+    <section class="lsec">
+      <h2>Для любого праздника</h2>
+      <div class="feat">
+        <div class="lcard"><div class="ic">🏠</div><b>Где угодно</b><p>Квартира, дом с двором или дача, группа детского сада, школьный класс, спортзал или студия — тайники подбираются под место.</p></div>
+        <div class="lcard"><div class="ic">👧👦</div><b>От 1 до 30 детей, 4–13 лет</b><p>Одной командой, двумя командами наперегонки или каждый сам за себя.</p></div>
+        <div class="lcard"><div class="ic">📱</div><b>С QR‑кодами</b><p>Дети сканируют карточку, вводят ответ — и только тогда узнают, где следующая подсказка.</p></div>
+      </div>
+    </section>
+
+    <section class="lsec" id="prices">
+      <h2>Тарифы</h2>
+      <p class="lead">Попробуйте бесплатно, а полную версию берите, когда понадобится. Оплата разовая, без автосписаний.</p>
+      <div class="ltar" id="landTariffs"></div>
+    </section>
+
+    <section class="lsec faq">
+      <h2>Частые вопросы</h2>
+      <details><summary>Нужно ли что-то покупать для квеста?</summary><p>Нет. Вы отмечаете, что есть дома или под рукой — бумага, подушки, ложки, шарики, — и в квест попадают только задания, для которых всё есть. Нужен принтер для карточек и небольшое «сокровище» в финале.</p></details>
+      <details><summary>Для какого возраста подходит?</summary><p>Для детей от 4 до 13 лет. Задание попадает в квест, только если подходит и младшему, и старшему ребёнку.</p></details>
+      <details><summary>Сколько времени занимает подготовка?</summary><p>Собрать квест — около 5 минут. Распечатать и разложить карточки по тайникам — ещё 10–15 минут. Сам квест длится 30, 45 или 60 минут.</p></details>
+      <details><summary>Можно провести квест в детском саду или школе?</summary><p>Да. Выберите место «Детский сад», «Школа» или «Секция или кружок» — тайники и задания подберутся под группу, класс или зал. Для аниматоров и педагогов есть тариф «Профи».</p></details>
+      <details><summary>Что, если дети не справятся с заданием?</summary><p>Квест нельзя проиграть: у каждого задания есть упрощённые попытки и весёлый откуп, а у детей — жетоны, которые можно обменять на подсказку.</p></details>
+      <details><summary>Как получить полную версию?</summary><p>Выберите тариф и оплатите через Робокассу. Полная версия откроется сразу, а ключ придёт на email — его можно ввести на другом устройстве.</p></details>
+      <details><summary>Можно ли вернуть деньги?</summary><p>Да, в течение 7 дней после оплаты — напишите на xplainquests@yandex.ru. Подробности в <a href="offer.html" target="_blank" rel="noopener">оферте</a>.</p></details>
+      <details><summary>Куда уходят имена детей и адрес праздника?</summary><p>Никуда: всё, что вы вводите при сборке квеста, хранится только в вашем браузере.</p></details>
+    </section>
+
+    <div class="bigcta"><button class="btn" data-start>✨ Собрать квест бесплатно</button></div>
+  </div>
+
   <div id="wizard" class="panel no-print">
     <div class="stepper" id="stepper">
       <button data-s="1">1. Тема</button>
@@ -1029,7 +1151,7 @@ function initPro(){
   else b.textContent=pl?('⭐ '+tTitle(pl.tariff)+' до '+fmtD(pl.exp)):'Бесплатная версия · Тарифы';
   b.title=TEST?'Нажмите, чтобы переключить вид (только в тестовом режиме)':'';
   $$('.pro-lock').forEach(function(el){ el.textContent=openAll()?'':'⭐'; });
-  $$('.tcard').forEach(function(c){ var l=c.querySelector('.tlock'); if(l) l.remove(); if(!openAll() && CONFIG.FREE_THEMES.indexOf(c.dataset.k)<0){ var s=document.createElement('span'); s.className='tlock'; s.textContent='⭐ Pro'; c.appendChild(s); } });
+  $$('#themeGrid .tcard').forEach(function(c){ var l=c.querySelector('.tlock'); if(l) l.remove(); if(!openAll() && CONFIG.FREE_THEMES.indexOf(c.dataset.k)<0){ var s=document.createElement('span'); s.className='tlock'; s.textContent='⭐ Pro'; c.appendChild(s); } });
 }
 $('proBadge').onclick=function(){ if(TEST){ simFree=!simFree; initPro(); toast(simFree?'Теперь сайт выглядит как для бесплатного пользователя':'Тестовый режим: всё открыто'); } else openTariffs(null); };
 function needPro(){ return false; } // выбор платных опций разрешён, оплата спрашивается при сборке квеста
@@ -1596,6 +1718,22 @@ function saveForm(){ store('xpq_form',JSON.stringify({name:$('fName').value,kids
 function loadForm(){ try{ var f=JSON.parse(store('xpq_form')||'null'); if(!f) return; $('fName').value=f.name||''; setKids(f.kids||5); if(f.fmt) setFmt(f.kids<4&&f.fmt==='teams'?'team':f.fmt); $('fAge').value=f.age; $('fYoung').value=f.young; $('fOld').value=f.old; if(f.props) S.props=f.props; }catch(e){} }
 
 $('footTariffs').onclick=function(e){ e.preventDefault(); openTariffs(null); };
+/* ---------- главная ---------- */
+function showLanding(on){ document.body.classList.toggle('mode-landing',!!on); window.scrollTo(0,0); }
+function startWizard(theme){ showLanding(false); $('resultScreen').style.display='none'; $('wizard').style.display='block'; if(theme){ var c=tg.querySelector('[data-k="'+theme+'"]'); if(c){ c.click(); return; } } go(1); }
+(function(){
+  var lt=$('landThemes'), h='';
+  Object.keys(Q.THEMES).forEach(function(k){ var th=Q.THEMES[k], gen=GEN(th); h+='<div class="tcard '+k+'" data-lt="'+k+'" style="background:'+th.pal.soft+';color:'+th.pal.main+'"><div class="tstrip">'+(gen?strip(th):'')+'</div><span class="e">'+th.e+'</span><b>'+th.name+'</b><span>'+esc(th.about)+'</span>'+(CONFIG.FREE_THEMES.indexOf(k)>=0?'<span class="tlock" style="background:#e9f7ef;color:#1f8a4c">Бесплатно</span>':'')+'</div>'; });
+  lt.innerHTML=h;
+  $$('[data-lt]',lt).forEach(function(c){ c.onclick=function(){ startWizard(c.dataset.lt); }; });
+  var t='<div class="tariff"><b>Бесплатно</b><div class="pr">0 ₽</div><ul><li>Пираты и Космос</li><li>30 минут, 6 испытаний</li><li>Одной командой</li><li>Бумажные карточки</li><li>Приглашения текстом</li></ul></div>';
+  CONFIG.TARIFFS.forEach(function(x){ t+='<div class="tariff">'+(x.hit?'<span class="hit">Выгодно</span>':'')+'<b>'+esc(x.title)+'</b><div class="pr">'+x.price.toLocaleString('ru-RU')+' ₽'+(x.per?' <small>/ '+x.per+'</small>':'')+'</div><p>'+esc(x.desc)+'</p></div>'; });
+  $('landTariffs').innerHTML=t;
+  $$('[data-start]').forEach(function(b){ b.onclick=function(){ startWizard(); }; });
+  document.querySelector('.logo').onclick=function(){ showLanding(true); };
+})();
+var firstVisit=!store('xpq_form') && !new URLSearchParams(location.search).get('InvId') && !Q.decodePlayer(location.hash);
+showLanding(firstVisit);
 initPro(); setKids(5); loadForm(); drawProps(); go(1); afterPayment(); recheck();
 var d0=Q.decodePlayer(location.hash); if(d0) openPlayer(d0,false);
 window.addEventListener('hashchange',function(){ var d2=Q.decodePlayer(location.hash); if(d2) openPlayer(d2,false); });
