@@ -24,6 +24,10 @@ button,input,select,textarea{font:inherit;color:inherit}
 .logo b{color:var(--main)}
 .logo i{font-style:normal;color:var(--accent)}
 .tag{color:var(--muted);font-size:14px}
+.acc-btn{margin-left:auto;font-size:13px;padding:6px 10px;border-radius:999px;background:#fff;border:1px solid var(--line);cursor:pointer;font:inherit;font-size:13px;color:inherit;max-width:190px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.acc-btn+.pro-badge{margin-left:8px}
+.acc-keys{margin:10px 0;padding:0;list-style:none}.acc-keys li{border:1px solid #e3e1db;border-radius:12px;padding:10px 12px;margin-bottom:8px;font-size:14px}.acc-keys b{font-family:monospace;font-size:14px}
+.acc-or{text-align:center;color:var(--muted);font-size:13px;margin:14px 0 10px}
 .pro-badge{margin-left:auto;font-size:13px;padding:6px 10px;border-radius:999px;background:#fff;border:1px solid var(--line)}
 .deco-strip{height:34px;margin:-6px 0 6px;background-repeat:repeat-x;background-size:auto 34px;display:none}
 body.th-ny .deco-strip{display:block;background-image:var(--garland)}
@@ -357,7 +361,7 @@ footer a{color:inherit}
   <header class="top no-print">
     <div class="logo"><b>XPlain</b><i>Quests</i></div>
     <div class="tag">Квест на детский праздник за 5 минут</div>
-    <div class="pro-badge" id="proBadge"></div>
+    <button class="acc-btn" id="accBtn" type="button">👤 Войти</button><div class="pro-badge" id="proBadge"></div>
   </header>
 
   <!-- ================= МАСТЕР ================= -->
@@ -533,7 +537,7 @@ footer a{color:inherit}
 
   <footer class="no-print">
     <div><a href="offer.html" target="_blank" rel="noopener">Публичная оферта</a> · <a href="privacy.html" target="_blank" rel="noopener">Политика обработки персональных данных</a> · <a href="#" id="footTariffs">Тарифы</a></div>
-    <div style="margin-top:6px">Ханов Алексей Юрьевич, самозанятый (НПД), ИНН 525633830780 · XPlainQuests@yandex.com · +7 (908) 239-92-15</div>
+    <div style="margin-top:6px">Ханов Алексей Юрьевич, самозанятый (НПД), ИНН 525633830780 · XPlainQuests@yandex.com</div>
     <div style="margin-top:6px">© 2026 XPlainQuests · все персонажи оригинальные · квесты проводятся под присмотром взрослых</div>
   </footer>
 </div>
@@ -577,6 +581,7 @@ footer a{color:inherit}
     <div id="freeBox" style="margin-top:14px;text-align:center"></div>
   </div>
 </div>
+<div class="modal" id="accModal"><div class="box" style="max-width:440px;max-height:92vh;overflow:auto"><div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0" id="accTitle">Вход</h3><button class="btn sm ghost" id="accClose" type="button">✕</button></div><div id="accBody"></div></div></div>
 <div class="modal" id="waitModal"><div class="box" style="text-align:center"><div style="font-size:46px">⏳</div><h3>Проверяем оплату…</h3><p class="note" id="waitNote">Обычно это занимает несколько секунд.</p></div></div>
 <div class="toast" id="toast"></div>
 
@@ -589,6 +594,7 @@ footer a{color:inherit}
 */
 var CONFIG = {
   API_URL: "https://functions.yandexcloud.net/d4el9fue7moq7gi2hjuq",
+  TG_BOT: "",            // имя бота для входа через Telegram (без @), например XPlainQuestsBot; пусто — кнопки Telegram нет
   SITE_LABEL: "XPlainQuests",          // подпись мелким шрифтом на материалах (в тарифе Профи — своя)
   OFFER_URL: "offer.html",
   PRIVACY_URL: "privacy.html",
@@ -1132,7 +1138,8 @@ function keyOf(p){ return [p.theme,p.place,p.young,p.old,p.kids,p.kids>1?p.fmt:'
 function passLic(){ var b=null; LICS.forEach(function(l){ if(l.tariff!=='one' && l.exp>now() && (!b||l.exp>b.exp)) b=l; }); return b; }
 function proFor(p){ if(TEST) return !simFree; if(passLic()) return true; var k=keyOf(p); return LICS.some(function(l){ return l.tariff==='one' && l.exp>now() && l.bind===k; }); }
 function openAll(){ return TEST ? !simFree : !!passLic(); }
-function isProfi(){ return !TEST && LICS.some(function(l){ return l.tariff==='pro' && l.exp>now(); }); }
+function isProfi(){ return !TEST && LICS.some(function(l){ return (l.tariff==='pro'||l.tariff==='unlim') && l.exp>now(); }); }
+function fmtExp(t){ return t-now()>50*365*864e5 ? 'бессрочно' : 'до '+fmtD(t); }
 function brand(){ return isProfi() ? (store('xpq_brand')||'') : CONFIG.SITE_LABEL; }
 function needsPro(p){
   var r=[];
@@ -1143,11 +1150,11 @@ function needsPro(p){
   return r;
 }
 function fmtD(t){ return new Date(t).toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'}); }
-function tTitle(id){ for(var i=0;i<CONFIG.TARIFFS.length;i++) if(CONFIG.TARIFFS[i].id===id) return CONFIG.TARIFFS[i].title; return id; }
+function tTitle(id){ for(var i=0;i<CONFIG.TARIFFS.length;i++) if(CONFIG.TARIFFS[i].id===id) return CONFIG.TARIFFS[i].title; return {unlim:'Безлимит'}[id]||id; }
 function initPro(){
   var b=$('proBadge'), pl=passLic();
   if(TEST) b.textContent=(simFree?'👀 Вид бесплатной версии':'🧪 Тестовый режим: всё открыто')+' · Тарифы';
-  else b.textContent=pl?('⭐ '+tTitle(pl.tariff)+' до '+fmtD(pl.exp)):'Бесплатная версия · Тарифы';
+  else b.textContent=pl?('⭐ '+tTitle(pl.tariff)+' '+fmtExp(pl.exp)):'Бесплатная версия · Тарифы';
   b.title=TEST?'Нажмите, чтобы переключить вид (только в тестовом режиме)':'';
   $$('.pro-lock').forEach(function(el){ el.textContent=openAll()?'':'⭐'; });
   $$('#themeGrid .tcard').forEach(function(c){ var l=c.querySelector('.tlock'); if(l) l.remove(); if(!openAll() && CONFIG.FREE_THEMES.indexOf(c.dataset.k)<0){ var s=document.createElement('span'); s.className='tlock'; s.textContent='⭐ Pro'; c.appendChild(s); } });
@@ -1163,10 +1170,10 @@ function openTariffs(p,reason){
   var r=PAYP?needsPro(PAYP):[];
   $('payReason').innerHTML=reason?'<div class="reason">'+esc(reason)+'</div>':(r.length?'<div class="reason">В бесплатной версии нет: '+esc(r.join(', '))+'. Выберите тариф — или соберите бесплатный вариант.</div>':'<p class="note">Бесплатно: темы «Пираты» и «Космос», 30 минут, одной командой, бумажные карточки, приглашения текстом.</p>');
   drawTariffs();
-  $('payEmail').value=store('xpq_email')||'';
+  $('payEmail').value=store('xpq_email')||(PROF&&PROF.email)||'';
   $('offerLink').href=CONFIG.OFFER_URL; $('privLink').href=CONFIG.PRIVACY_URL;
   var my=LICS.filter(function(l){return l.exp>now();});
-  $('myKeys').innerHTML=my.length?'Активные ключи на этом устройстве: '+my.map(function(l){ return '<b>'+esc(l.key)+'</b> — '+esc(tTitle(l.tariff))+' до '+fmtD(l.exp); }).join('; '):'';
+  $('myKeys').innerHTML=my.length?'Активные ключи на этом устройстве: '+my.map(function(l){ return '<b>'+esc(l.key)+'</b> — '+esc(tTitle(l.tariff))+' '+fmtExp(l.exp); }).join('; '):'';
   $('freeBox').innerHTML=PAYP&&r.length?'<button class="btn ghost" id="payFree">Собрать бесплатную версию</button>':'';
   if($('payFree')) $('payFree').onclick=freeFallback;
   $('payModal').style.display='flex';
@@ -1181,7 +1188,7 @@ function drawTariffs(){
   $$('#tariffList .tariff').forEach(function(c){ c.onclick=function(){ if(c.classList.contains('off')) return; PAYT=c.dataset.t; drawTariffs(); }; });
   var t=CONFIG.TARIFFS.filter(function(x){return x.id===PAYT;})[0];
   $('payGo').textContent='Оплатить '+t.price.toLocaleString('ru-RU')+' ₽';
-  var ren=LICS.filter(function(l){ return l.tariff!=='one'; }).sort(function(a,b){return b.exp-a.exp;})[0];
+  var ren=LICS.filter(function(l){ return l.tariff!=='one' && l.tariff!=='unlim'; }).sort(function(a,b){return b.exp-a.exp;})[0];
   $('renewBox').innerHTML=(ren && PAYT!=='one')?'<label class="agree"><input type="checkbox" id="renewChk" checked> Продлить мой ключ <b>'+esc(ren.key)+'</b> — срок прибавится к текущему</label>':'';
   if($('renewChk')) $('renewChk').dataset.key=ren.key;
 }
@@ -1194,6 +1201,7 @@ $('payGo').onclick=function(){
   if(TEST){ toast('Оплата заработает, когда будет подключён сервер (API_URL)'); return; }
   var body={tariff:PAYT,email:email};
   if(PAYT==='one') body.bind=keyOf(PAYP);
+  if(TOK) body.token=TOK;
   if($('renewChk')&&$('renewChk').checked) body.renewKey=$('renewChk').dataset.key;
   $('payGo').disabled=true; $('payGo').textContent='Переходим к оплате…';
   fetch(CONFIG.API_URL+'?a=create',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
@@ -1205,17 +1213,17 @@ $('payGo').onclick=function(){
     })
     .catch(function(e){ $('payGo').disabled=false; drawTariffs(); toast(e.message||'Не удалось начать оплату, попробуйте ещё раз'); });
 };
-function activateKey(key){
+function activateKey(key,bind){
   key=String(key||'').trim().toUpperCase();
-  return fetch(CONFIG.API_URL+'?a=activate&key='+encodeURIComponent(key)).then(function(r){return r.json();}).then(function(d){
-    if(!d.ok) throw new Error(d.error||'Ключ не найден');
+  return fetch(CONFIG.API_URL+'?a=activate&key='+encodeURIComponent(key)+(bind?'&bind='+encodeURIComponent(bind):'')).then(function(r){return r.json();}).then(function(d){
+    if(!d.ok){ var e=new Error(d.error||'Ключ не найден'); e.srv=true; throw e; }
     LICS=LICS.filter(function(l){return l.key!==d.key;}); LICS.push({key:d.key,tariff:d.tariff,exp:d.exp,bind:d.bind,checked:now()}); saveLics(); initPro(); return d;
   });
 }
 $('keyGo').onclick=function(){
   var k=$('keyIn').value; if(!k.trim()) return;
   if(TEST){ toast('Активация заработает после подключения сервера'); return; }
-  activateKey(k).then(function(d){ toast('Ключ активирован: '+tTitle(d.tariff)+' до '+fmtD(d.exp)+' ⭐'); $('payModal').style.display='none'; if(PAYP && proFor(PAYP)) make(); })
+  activateKey(k,PAYP?keyOf(PAYP):'').then(function(d){ if(TOK) api('addkey',{token:TOK,key:d.key}).then(function(r){ applyProfile(r.profile); }).catch(function(){}); toast('Ключ активирован: '+tTitle(d.tariff)+' '+fmtExp(d.exp)+' ⭐'); $('payModal').style.display='none'; if(PAYP && proFor(PAYP)) make(); })
     .catch(function(e){ toast(e.message); });
 };
 function freeFallback(){
@@ -1259,7 +1267,77 @@ function afterPayment(){
 /* раз в сутки перепроверяем ключи (срок, продление) */
 function recheck(){
   if(TEST) return;
-  LICS.forEach(function(l){ if(now()-(l.checked||0)>86400000) activateKey(l.key).catch(function(){ LICS=LICS.filter(function(x){return x.key!==l.key;}); saveLics(); initPro(); }); });
+  LICS.forEach(function(l){ if(now()-(l.checked||0)>86400000) activateKey(l.key).catch(function(e){ if(!e.srv) return; LICS=LICS.filter(function(x){return x.key!==l.key;}); saveLics(); initPro(); }); });
+}
+
+/* ---------- вход: по почте и через Telegram ---------- */
+var TOK=store('xpq_tok')||'', PROF=null, ACCMAIL='';
+function api(a,body){
+  return fetch(CONFIG.API_URL+'?a='+a,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body||{})})
+    .then(function(r){ return r.json().then(function(d){ if(!r.ok||d.error){ var e=new Error(d.error||'Не получилось, попробуйте ещё раз'); e.status=r.status; throw e; } return d; }); });
+}
+function applyProfile(p){
+  PROF=p||null;
+  if(p) (p.keys||[]).forEach(function(k){ LICS=LICS.filter(function(l){return l.key!==k.key;}); LICS.push({key:k.key,tariff:k.tariff,exp:k.exp,bind:k.bind,checked:now()}); });
+  saveLics(); initPro(); drawAccBtn();
+}
+function drawAccBtn(){ $('accBtn').textContent=PROF?'👤 '+(PROF.email||PROF.tg||'Профиль'):'👤 Войти'; }
+function loginDone(d){ TOK=d.token; store('xpq_tok',TOK); applyProfile(d.profile); drawAcc(); var n=(d.profile.keys||[]).filter(function(k){return k.exp>now();}).length; toast(n?'Вы вошли. Ключей: '+n+' ⭐':'Вы вошли'); }
+function tgWidget(box){
+  if(!CONFIG.TG_BOT){ box.innerHTML=''; return; }
+  box.innerHTML='';
+  var sc=document.createElement('script'); sc.async=true; sc.src='https://telegram.org/js/telegram-widget.js?22';
+  sc.setAttribute('data-telegram-login',CONFIG.TG_BOT); sc.setAttribute('data-size','large'); sc.setAttribute('data-radius','12'); sc.setAttribute('data-onauth','xpqTgAuth(user)');
+  box.appendChild(sc);
+}
+window.xpqTgAuth=function(user){ api('tg',{data:user,token:TOK||undefined}).then(loginDone).catch(function(e){ toast(e.message); }); };
+function mailForm(linking){
+  return '<label class="lbl" for="accMail">'+(linking?'Почта для входа':'Ваша почта')+'</label>'+
+    '<div style="display:flex;gap:8px"><input type="text" id="accMail" placeholder="you@mail.ru" autocomplete="email" value="'+esc(ACCMAIL||store('xpq_email')||'')+'"><button class="btn" id="accSend" type="button" style="white-space:nowrap">Получить код</button></div>'+
+    '<div id="accCodeBox" style="display:none;margin-top:10px"><label class="lbl" for="accCode">Код из письма</label><div style="display:flex;gap:8px"><input type="text" id="accCode" inputmode="numeric" maxlength="6" placeholder="123456" autocomplete="one-time-code"><button class="btn" id="accVerify" type="button" style="white-space:nowrap">Войти</button></div><div class="note" style="margin-top:4px">Письмо не пришло? Проверьте «Спам» или запросите код ещё раз через минуту.</div></div>'+
+    '<div class="note" style="margin-top:8px">Входя, вы соглашаетесь с <a href="'+CONFIG.PRIVACY_URL+'" target="_blank" rel="noopener">политикой обработки персональных данных</a>.</div>';
+}
+function bindMailForm(){
+  $('accSend').onclick=function(){
+    var m=$('accMail').value.trim(); if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m)){ toast('Проверьте почту'); return; }
+    ACCMAIL=m; $('accSend').disabled=true;
+    api('code',{email:m}).then(function(){ $('accCodeBox').style.display='block'; $('accCode').focus(); toast('Код отправлен на '+m); })
+      .catch(function(e){ toast(e.message); if(e.status===429) $('accCodeBox').style.display='block'; })
+      .then(function(){ setTimeout(function(){ if($('accSend')) $('accSend').disabled=false; },3000); });
+  };
+  $('accVerify').onclick=function(){
+    var c=$('accCode').value.replace(/\D/g,''); if(c.length!==6){ toast('Введите 6 цифр из письма'); return; }
+    api('verify',{email:$('accMail').value.trim(),code:c,token:TOK||undefined}).then(loginDone).catch(function(e){ toast(e.message); });
+  };
+  $('accCode').onkeydown=function(e){ if(e.key==='Enter') $('accVerify').click(); };
+}
+function drawAcc(){
+  var h='';
+  if(!PROF){
+    $('accTitle').textContent='Вход';
+    h+='<p class="note">Войдите, и купленные ключи будут подтягиваться сами — на телефоне, планшете и компьютере. Пароль не нужен.</p>'+mailForm(false);
+    if(CONFIG.TG_BOT) h+='<div class="acc-or">или</div><div id="tgBox" style="text-align:center"></div>';
+  } else {
+    $('accTitle').textContent='👤 Профиль';
+    h+='<p style="margin:6px 0">'+(PROF.email?'📧 <b>'+esc(PROF.email)+'</b><br>':'')+(PROF.tg?'✈️ Telegram: <b>'+esc(PROF.tg)+'</b>':'')+'</p>';
+    var ks=(PROF.keys||[]);
+    h+=ks.length?'<ul class="acc-keys">'+ks.map(function(k){ var on=k.exp>now(); return '<li>'+(on?'⭐ ':'⌛ ')+esc(tTitle(k.tariff))+' — '+(on?fmtExp(k.exp):'срок закончился')+'<br><b>'+esc(k.key)+'</b></li>'; }).join('')+'</ul>'
+      :'<p class="note">Ключей пока нет. Купленные на эту почту ключи появятся здесь сами, а другой ключ можно ввести в «Тарифы» → «У меня есть ключ».</p>';
+    if(!PROF.email) h+='<details style="margin-top:10px"><summary style="cursor:pointer;font-weight:700">📧 Добавить вход по почте</summary><div style="margin-top:8px">'+mailForm(true)+'</div></details>';
+    if(!PROF.tg && CONFIG.TG_BOT) h+='<details style="margin-top:10px"><summary style="cursor:pointer;font-weight:700">✈️ Добавить вход через Telegram</summary><div id="tgBox" style="margin-top:8px"></div></details>';
+    h+='<div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap"><button class="btn ghost sm" id="accTariffs" type="button">⭐ Тарифы</button><button class="btn ghost sm" id="accOut" type="button">Выйти</button></div>';
+  }
+  $('accBody').innerHTML=h;
+  if($('accSend')) bindMailForm();
+  if($('tgBox')) tgWidget($('tgBox'));
+  if($('accOut')) $('accOut').onclick=function(){ api('logout',{token:TOK}).catch(function(){}); TOK=''; store('xpq_tok',''); PROF=null; drawAccBtn(); drawAcc(); toast('Вы вышли из профиля. Ключи на этом устройстве остались'); };
+  if($('accTariffs')) $('accTariffs').onclick=function(){ $('accModal').style.display='none'; openTariffs(null); };
+}
+$('accBtn').onclick=function(){ if(TEST){ toast('Вход заработает после подключения сервера'); return; } drawAcc(); $('accModal').style.display='flex'; };
+$('accClose').onclick=function(){ $('accModal').style.display='none'; };
+function loadProfile(){
+  if(TEST||!TOK) return;
+  api('me',{token:TOK}).then(function(d){ applyProfile(d.profile); }).catch(function(e){ if(e.status===401){ TOK=''; store('xpq_tok',''); } });
 }
 
 
@@ -1367,7 +1445,7 @@ var HOW={
   cert:'<b>Шаг 5 из 6. Сертификат.</b> Впишите имена детей и распечатайте — вручите в финале вместе с сокровищем.',
   remote:'<b>Шаг 6 из 6. На празднике.</b> Держите телефон под рукой: здесь задание, ответ, таймер и звуки для каждого испытания.'
 };
-function make(){ var pp=params(); if(needsPro(pp).length && !proFor(pp)){ openTariffs(pp); return; } QC=Q.generate(pp); render(); $('wizard').style.display='none'; $('resultScreen').style.display='block'; tab='invite'; showTab(); saveForm(); }
+function make(){ var pp=params(); if(needsPro(pp).length && !proFor(pp)){ var ub=LICS.filter(function(l){ return l.tariff==='one' && !l.bind && l.exp>now(); })[0]; if(ub && !TEST){ activateKey(ub.key,keyOf(pp)).then(function(){ make(); }).catch(function(){ openTariffs(pp); }); return; } openTariffs(pp); return; } QC=Q.generate(pp); render(); $('wizard').style.display='none'; $('resultScreen').style.display='block'; tab='invite'; showTab(); saveForm(); }
 $('editBtn').onclick=function(){ $('resultScreen').style.display='none'; $('wizard').style.display='block'; go(2); };
 $('regenBtn').onclick=function(){ QC=Q.generate(params()); render(); showTab(); toast('Готов новый вариант 🎲'); };
 $$('#rnav button').forEach(function(b){ b.onclick=function(){ tab=b.dataset.t; showTab(); }; });
@@ -1733,7 +1811,7 @@ function startWizard(theme){ showLanding(false); $('resultScreen').style.display
 })();
 var firstVisit=!store('xpq_form') && !new URLSearchParams(location.search).get('InvId') && !Q.decodePlayer(location.hash);
 showLanding(firstVisit);
-initPro(); setKids(5); loadForm(); drawProps(); go(1); afterPayment(); recheck();
+initPro(); setKids(5); loadForm(); drawProps(); go(1); afterPayment(); recheck(); loadProfile();
 var d0=Q.decodePlayer(location.hash); if(d0) openPlayer(d0,false);
 window.addEventListener('hashchange',function(){ var d2=Q.decodePlayer(location.hash); if(d2) openPlayer(d2,false); });
 })();
