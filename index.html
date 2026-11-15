@@ -8,6 +8,21 @@
 <meta property="og:title" content="XPlainQuests — квест на детский праздник за 5 минут">
 <meta property="og:description" content="Задания под возраст детей, карточки для печати, приглашения и сертификаты. Дома, в садике, школе или на секции.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://xplainquests.ru/">
+<meta property="og:site_name" content="XPlainQuests">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:image" content="https://xplainquests.ru/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="XPlainQuests — квест на детский праздник за 5 минут">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://xplainquests.ru/og.jpg">
+<link rel="canonical" href="https://xplainquests.ru/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f6b45">
 <meta name="description" content="Готовый квест для детского праздника дома, в садике, школе или на секции: задания под возраст детей, загадки, карточки для печати, приглашения гостям и QR-коды.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800&family=Marck+Script&display=swap" rel="stylesheet">
@@ -27,6 +42,10 @@ button,input,select,textarea{font:inherit;color:inherit}
 .acc-btn{margin-left:auto;font-size:13px;padding:6px 10px;border-radius:999px;background:#fff;border:1px solid var(--line);cursor:pointer;font:inherit;font-size:13px;color:inherit;max-width:190px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .acc-btn+.pro-badge{margin-left:8px}
 .acc-keys{margin:10px 0;padding:0;list-style:none}.acc-keys li{border:1px solid #e3e1db;border-radius:12px;padding:10px 12px;margin-bottom:8px;font-size:14px}.acc-keys b{font-family:monospace;font-size:14px}
+.tg-btn{background:#2aabee!important;color:#fff!important;width:100%}
+.tg-qr{display:flex;gap:14px;align-items:center;background:#f4f8fb;border-radius:14px;padding:12px;margin:12px 0}.tg-qr .q{background:#fff;padding:8px;border-radius:10px;flex:none}.tg-qr .q img,.tg-qr .q canvas{display:block;width:120px!important;height:120px!important}
+.tg-code{display:inline-block;font-family:monospace;font-size:18px;font-weight:700;background:#eef4ff;border-radius:8px;padding:1px 8px;letter-spacing:2px}
+.tg-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px}@media(max-width:480px){.tg-btns{grid-template-columns:1fr}.tg-qr .q{display:none}}
 .acc-or{text-align:center;color:var(--muted);font-size:13px;margin:14px 0 10px}
 .pro-badge{margin-left:auto;font-size:13px;padding:6px 10px;border-radius:999px;background:#fff;border:1px solid var(--line)}
 .deco-strip{height:34px;margin:-6px 0 6px;background-repeat:repeat-x;background-size:auto 34px;display:none}
@@ -1316,7 +1335,7 @@ function drawAcc(){
   if(!PROF){
     $('accTitle').textContent='Вход';
     h+='<p class="note">Войдите, и купленные ключи будут подтягиваться сами — на телефоне, планшете и компьютере. Пароль не нужен.</p>'+mailForm(false);
-    if(CONFIG.TG_BOT) h+='<div class="acc-or">или</div><div id="tgBox" style="text-align:center"></div>';
+    if(CONFIG.TG_BOT) h+='<div class="acc-or">или</div><button class="btn tg-btn" id="tgStart" type="button">✈️ Войти через Telegram</button>';
   } else {
     $('accTitle').textContent='👤 Профиль';
     h+='<p style="margin:6px 0">'+(PROF.email?'📧 <b>'+esc(PROF.email)+'</b><br>':'')+(PROF.tg?'✈️ Telegram: <b>'+esc(PROF.tg)+'</b>':'')+'</p>';
@@ -1324,17 +1343,56 @@ function drawAcc(){
     h+=ks.length?'<ul class="acc-keys">'+ks.map(function(k){ var on=k.exp>now(); return '<li>'+(on?'⭐ ':'⌛ ')+esc(tTitle(k.tariff))+' — '+(on?fmtExp(k.exp):'срок закончился')+'<br><b>'+esc(k.key)+'</b></li>'; }).join('')+'</ul>'
       :'<p class="note">Ключей пока нет. Купленные на эту почту ключи появятся здесь сами, а другой ключ можно ввести в «Тарифы» → «У меня есть ключ».</p>';
     if(!PROF.email) h+='<details style="margin-top:10px"><summary style="cursor:pointer;font-weight:700">📧 Добавить вход по почте</summary><div style="margin-top:8px">'+mailForm(true)+'</div></details>';
-    if(!PROF.tg && CONFIG.TG_BOT) h+='<details style="margin-top:10px"><summary style="cursor:pointer;font-weight:700">✈️ Добавить вход через Telegram</summary><div id="tgBox" style="margin-top:8px"></div></details>';
+    if(!PROF.tg && CONFIG.TG_BOT) h+='<button class="btn ghost sm" id="tgStart" type="button" style="margin-top:10px">✈️ Добавить вход через Telegram</button>';
     h+='<div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap"><button class="btn ghost sm" id="accTariffs" type="button">⭐ Тарифы</button><button class="btn ghost sm" id="accOut" type="button">Выйти</button></div>';
   }
   $('accBody').innerHTML=h;
   if($('accSend')) bindMailForm();
-  if($('tgBox')) tgWidget($('tgBox'));
+  if($('tgStart')) $('tgStart').onclick=tgLink;
   if($('accOut')) $('accOut').onclick=function(){ api('logout',{token:TOK}).catch(function(){}); TOK=''; store('xpq_tok',''); PROF=null; drawAccBtn(); drawAcc(); toast('Вы вышли из профиля. Ключи на этом устройстве остались'); };
   if($('accTariffs')) $('accTariffs').onclick=function(){ $('accModal').style.display='none'; openTariffs(null); };
 }
 $('accBtn').onclick=function(){ if(TEST){ toast('Вход заработает после подключения сервера'); return; } drawAcc(); $('accModal').style.display='flex'; };
-$('accClose').onclick=function(){ $('accModal').style.display='none'; };
+$('accClose').onclick=function(){ $('accModal').style.display='none'; TGPOLL++; };
+/* вход через бота: QR, приложение, веб-версия; по номеру телефона — запасной вариант */
+var TGPOLL=0;
+function tgLink(){
+  var my=++TGPOLL;
+  $('accTitle').textContent='Вход через Telegram';
+  $('accBody').innerHTML='<p class="note">Готовлю ссылку…</p>';
+  api('tglink',{token:TOK||undefined}).then(function(d){
+    if(my!==TGPOLL) return;
+    var start='login_'+d.id, bot=CONFIG.TG_BOT;
+    var web='https://t.me/'+bot+'?start='+start;
+    var app='tg://resolve?domain='+bot+'&start='+start;
+    var webapp='https://web.telegram.org/k/#?tgaddr='+encodeURIComponent(app);
+    $('accBody').innerHTML='<p style="margin:8px 0">В Telegram откроется бот <b>@'+esc(bot)+'</b> с кнопкой «Войти на сайте» и кодом <span class="tg-code">'+esc(d.code)+'</span> — проверьте, что он совпадает.</p>'+
+      '<div class="tg-qr"><div class="q" id="tgQR"></div><div><b>С телефона</b><div class="note">Наведите камеру телефона на код — откроется Telegram. Удобнее всего, если Telegram только на телефоне.</div></div></div>'+
+      '<div class="tg-btns"><a class="btn tg-btn" href="'+app+'">✈️ Приложение Telegram</a><a class="btn ghost" href="'+webapp+'" target="_blank" rel="noopener">Веб-версия Telegram</a></div>'+
+      '<p class="note" style="margin-top:10px">Приложение — если Telegram установлен на этом устройстве. Веб-версия — если вы входите в web.telegram.org в этом браузере. На телефоне можно просто открыть <a href="'+web+'" target="_blank" rel="noopener">ссылку на бота</a>.</p>'+
+      '<p class="note" id="tgWait">⏳ Жду подтверждения… Окно закроется само.</p>'+
+      '<p class="note"><a href="#" id="tgPhone">Нет Telegram ни на телефоне, ни на компьютере? Войти по номеру телефона</a></p><div id="tgBox"></div>'+
+      '<button class="btn ghost sm" id="tgBack" type="button" style="margin-top:8px">← Назад</button>';
+    try{ if(window.QRCode) new QRCode($('tgQR'),{text:web,width:240,height:240,correctLevel:QRCode.CorrectLevel.M}); else $('tgQR').style.display='none'; }catch(e){ $('tgQR').style.display='none'; }
+    $('tgPhone').onclick=function(e){ e.preventDefault(); tgWidget($('tgBox')); this.parentNode.style.display='none'; };
+    $('tgBack').onclick=function(){ TGPOLL++; drawAcc(); };
+    var n=0;
+    (function poll(){
+      if(my!==TGPOLL || $('accModal').style.display==='none') return;
+      api('tgpoll',{id:d.id}).then(function(r){
+        if(my!==TGPOLL) return;
+        if(r.token){ TGPOLL++; loginDone(r); return; }
+        if(r.expired){ $('tgWait').innerHTML='Ссылка устарела. <a href="#" id="tgAgain">Получить новую</a>'; $('tgAgain').onclick=function(e){ e.preventDefault(); tgLink(); }; return; }
+        if(++n<300) setTimeout(poll,2000);
+      }).catch(function(e){ if(my!==TGPOLL) return; if(e.status===404||e.status===410){ $('tgWait').textContent=e.message; return; } if(++n<300) setTimeout(poll,4000); });
+    })();
+  }).catch(function(e){
+    if(my!==TGPOLL) return;
+    // сервер ещё без входа через бота — показываем вход по номеру телефона
+    $('accBody').innerHTML='<p class="note">Войдите через Telegram по номеру телефона:</p><div id="tgBox" style="text-align:center;min-height:44px"></div><button class="btn ghost sm" id="tgBack" type="button" style="margin-top:12px">← Назад</button>';
+    tgWidget($('tgBox')); $('tgBack').onclick=function(){ TGPOLL++; drawAcc(); };
+  });
+}
 function loadProfile(){
   if(TEST||!TOK) return;
   api('me',{token:TOK}).then(function(d){ applyProfile(d.profile); }).catch(function(e){ if(e.status===401){ TOK=''; store('xpq_tok',''); } });
