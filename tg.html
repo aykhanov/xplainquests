@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="robots" content="noindex">
+<title>Вход на сайте XPlainQuests</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+body{margin:0;font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--tg-theme-bg-color,#fff);color:var(--tg-theme-text-color,#1d1d1d);text-align:center}
+.wrap{max-width:420px;margin:0 auto;padding:36px 20px}
+.logo{font-weight:800;font-size:24px}.logo b{color:#1f6b45}.logo i{font-style:normal;color:#f0a020}
+.code{display:inline-block;font:700 34px/1 ui-monospace,Consolas,monospace;letter-spacing:6px;background:var(--tg-theme-secondary-bg-color,#f1f4f8);border-radius:14px;padding:14px 20px;margin:14px 0}
+.btn{display:block;width:100%;border:0;border-radius:14px;padding:15px;font:inherit;font-weight:700;background:var(--tg-theme-button-color,#2aabee);color:var(--tg-theme-button-text-color,#fff);cursor:pointer;margin-top:12px}
+.btn:disabled{opacity:.6}
+.note{font-size:14px;color:var(--tg-theme-hint-color,#6b6b6b)}
+.ok{font-size:48px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="logo"><b>XPlain</b><i>Quests</i></div>
+  <div id="box"><p class="note">Загружаю…</p></div>
+</div>
+<script>
+var API='https://functions.yandexcloud.net/d4el9fue7moq7gi2hjuq';
+var W=window.Telegram&&Telegram.WebApp, box=document.getElementById('box');
+function post(a,body){ return fetch(API+'?a='+a,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}).then(function(r){ return r.json().then(function(d){ if(!r.ok||d.error) throw new Error(d.error||'Ошибка, попробуйте ещё раз'); return d; }); }); }
+function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+function msg(h){ box.innerHTML=h; }
+if(W){ W.ready(); W.expand(); }
+var sp=W&&W.initDataUnsafe&&W.initDataUnsafe.start_param||'', m=/^login_([a-f0-9]{16})$/.exec(sp), init=W&&W.initData||'';
+if(!m||!init){
+  msg('<p>Это мини-приложение для входа на сайте <b>xplainquests.ru</b>.</p><p class="note">Откройте сайт, нажмите «Войти» → «Войти через Telegram», и вернитесь сюда по ссылке с сайта.</p><a class="btn" href="https://xplainquests.ru/" target="_blank" rel="noopener" style="text-decoration:none">Открыть xplainquests.ru</a>');
+} else {
+  post('tginfo',{id:m[1],initData:init}).then(function(d){
+    msg('<p>'+(d.linking?'Привязать этот Telegram к профилю на сайте':'Войти на сайте')+' <b>xplainquests.ru</b>?</p><p class="note">Проверьте, что код совпадает с кодом на сайте:</p><div class="code">'+esc(d.code)+'</div><button class="btn" id="go">✅ Войти на сайте</button><p class="note">Если вы не начинали вход на сайте — просто закройте это окно.</p>');
+    document.getElementById('go').onclick=function(){
+      this.disabled=true;
+      post('tgok',{id:m[1],initData:init}).then(function(){
+        msg('<div class="ok">✅</div><p><b>Готово!</b></p><p class="note">Вернитесь на сайт — вход выполнится сам.</p>');
+        if(W&&W.HapticFeedback) W.HapticFeedback.notificationOccurred('success');
+        setTimeout(function(){ if(W) W.close(); },2000);
+      }).catch(function(e){ msg('<p>'+esc(e.message)+'</p>'); });
+    };
+  }).catch(function(e){ msg('<p>'+esc(e.message)+'</p>'); });
+}
+</script>
+</body>
+</html>

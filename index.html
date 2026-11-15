@@ -1363,13 +1363,13 @@ function tgLink(){
   api('tglink',{token:TOK||undefined}).then(function(d){
     if(my!==TGPOLL) return;
     var start='login_'+d.id, bot=CONFIG.TG_BOT;
-    var web='https://t.me/'+bot+'?start='+start;
-    var app='tg://resolve?domain='+bot+'&start='+start;
+    var web='https://t.me/'+bot+'?startapp='+start;
+    var app='tg://resolve?domain='+bot+'&startapp='+start;
     var webapp='https://web.telegram.org/k/#?tgaddr='+encodeURIComponent(app);
-    $('accBody').innerHTML='<p style="margin:8px 0">В Telegram откроется бот <b>@'+esc(bot)+'</b> с кнопкой «Войти на сайте» и кодом <span class="tg-code">'+esc(d.code)+'</span> — проверьте, что он совпадает.</p>'+
+    $('accBody').innerHTML='<p style="margin:8px 0">В Telegram откроется <b>XPlainQuests</b> с кнопкой «Войти на сайте» и кодом <span class="tg-code">'+esc(d.code)+'</span> — проверьте, что он совпадает.</p>'+
       '<div class="tg-qr"><div class="q" id="tgQR"></div><div><b>С телефона</b><div class="note">Наведите камеру телефона на код — откроется Telegram. Удобнее всего, если Telegram только на телефоне.</div></div></div>'+
       '<div class="tg-btns"><a class="btn tg-btn" href="'+app+'">✈️ Приложение Telegram</a><a class="btn ghost" href="'+webapp+'" target="_blank" rel="noopener">Веб-версия Telegram</a></div>'+
-      '<p class="note" style="margin-top:10px">Приложение — если Telegram установлен на этом устройстве. Веб-версия — если вы входите в web.telegram.org в этом браузере. На телефоне можно просто открыть <a href="'+web+'" target="_blank" rel="noopener">ссылку на бота</a>.</p>'+
+      '<p class="note" style="margin-top:10px">Приложение — если Telegram установлен на этом устройстве. Веб-версия — если вы входите в web.telegram.org в этом браузере. На телефоне можно просто открыть <a href="'+web+'" target="_blank" rel="noopener">эту ссылку</a>.</p>'+
       '<p class="note" id="tgWait">⏳ Жду подтверждения… Окно закроется само.</p>'+
       '<p class="note"><a href="#" id="tgPhone">Нет Telegram ни на телефоне, ни на компьютере? Войти по номеру телефона</a></p><div id="tgBox"></div>'+
       '<button class="btn ghost sm" id="tgBack" type="button" style="margin-top:8px">← Назад</button>';
