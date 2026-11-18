@@ -35,7 +35,8 @@ button,input,select,textarea{font:inherit;color:inherit}
 .wrap{max-width:1000px;margin:0 auto;padding:18px}
 /* ===== шапка ===== */
 .top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
-.logo{font-weight:800;font-size:24px;letter-spacing:-.5px}
+.logo{font-weight:800;font-size:24px;letter-spacing:-.5px;display:flex;align-items:center}
+.lmark{display:inline-flex;margin-right:9px}.lmark svg{width:36px;height:36px;display:block}
 .logo b{color:var(--main)}
 .logo i{font-style:normal;color:var(--accent)}
 .tag{color:var(--muted);font-size:14px}
@@ -44,8 +45,9 @@ button,input,select,textarea{font:inherit;color:inherit}
 .acc-btn+.acc-btn{margin-left:8px}
 a.acc-btn{text-decoration:none}
 .brk{display:none}
-@media(max-width:600px){.top{gap:6px;row-gap:8px;margin-bottom:10px}.top .tag{display:none}.logo{font-size:21px}.acc-btn{font-size:12px;padding:5px 9px;max-width:120px}#myBtn{margin-left:auto}.acc-btn+.acc-btn{margin-left:0}.brk{display:block;flex-basis:100%;height:0}.pro-badge{margin-left:0;font-size:12px;padding:4px 10px}.acc-btn+.pro-badge{margin-left:0}}
+@media(max-width:600px){.top{gap:6px;row-gap:8px;margin-bottom:10px}.lmark{margin-right:6px}.lmark svg{width:28px;height:28px}.top .tag{display:none}.logo{font-size:21px}.acc-btn{font-size:12px;padding:5px 9px;max-width:120px}#myBtn{margin-left:auto}.acc-btn+.acc-btn{margin-left:0}.brk{display:block;flex-basis:100%;height:0}.pro-badge{margin-left:0;font-size:12px;padding:4px 10px}.acc-btn+.pro-badge{margin-left:0}}
 @media(max-width:380px){.top .mt{display:none}}
+@media(max-width:400px){.logo{font-size:19px}.lmark svg{width:26px;height:26px}#myBtn .mq{display:none}#myBtn{padding:5px 10px}}
 .acc-keys{margin:10px 0;padding:0;list-style:none}.acc-keys li{border:1px solid #e3e1db;border-radius:12px;padding:10px 12px;margin-bottom:8px;font-size:14px}.acc-keys b{font-family:monospace;font-size:14px}
 .tg-btn{background:#2aabee!important;color:#fff!important;width:100%}
 .tg-qr{display:flex;gap:14px;align-items:center;background:#f4f8fb;border-radius:14px;padding:12px;margin:12px 0}.tg-qr .q{background:#fff;padding:8px;border-radius:10px;flex:none}.tg-qr .q img,.tg-qr .q canvas{display:block;width:120px!important;height:120px!important}
@@ -409,9 +411,9 @@ footer a{color:inherit}
 <div class="wrap">
   <div class="deco-strip no-print"></div>
   <header class="top no-print">
-    <div class="logo"><b>XPlain</b><i>Quests</i></div>
+    <div class="logo"><span class="lmark"><svg aria-hidden="true" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"> <circle cx="200" cy="200" r="200" fill="#1f1f24"/> <path d="M78 300 C 92 262, 130 270, 140 240 S 150 196, 178 192" fill="none" stroke="#f6f4f0" stroke-width="15" stroke-linecap="round" stroke-dasharray="1 29"/> <g stroke="#f0a020" stroke-width="42" stroke-linecap="round"><line x1="196" y1="128" x2="296" y2="228"/><line x1="296" y1="128" x2="196" y2="228"/></g> <path d="M310 290 l7 17 17 7 -17 7 -7 17 -7 -17 -17 -7 17 -7z" fill="#f0a020"/><path d="M110 112 l5 12 12 5 -12 5 -5 12 -5 -12 -12 -5 12 -5z" fill="#f0a020" opacity=".7"/> </svg></span><b>XPlain</b><i>Quests</i></div>
     <div class="tag">Квест на детский праздник за 5 минут</div>
-    <a class="acc-btn" id="myBtn" href="/my/">📚 <span class="mt">Мои </span>квесты</a><button class="acc-btn" id="accBtn" type="button">👤 Войти</button><div class="brk"></div><div class="pro-badge" id="proBadge"></div>
+    <a class="acc-btn" id="myBtn" href="/my/">📚<span class="mq"> <span class="mt">Мои </span>квесты</span></a><button class="acc-btn" id="accBtn" type="button">👤 Войти</button><div class="brk"></div><div class="pro-badge" id="proBadge"></div>
   </header>
 
   <!-- ================= МАСТЕР ================= -->
