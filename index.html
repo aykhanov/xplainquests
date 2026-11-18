@@ -1876,8 +1876,8 @@ $('payGo').onclick=function(){
     .then(function(r){ return r.json(); })
     .then(function(d){
       if(!d.url){ throw new Error(d.error||'Ошибка'); }
-      store('xpq_pending',JSON.stringify({inv:d.inv,form:formSnap(),build:!!PAYP}));
-      location.href=d.url;
+      store('xpq_pending',JSON.stringify({inv:d.inv,form:formSnap(),build:!!PAYP,tariff:PAYT}));
+      goal('pay_start',{tariff:PAYT,order_price:tPrice(PAYT),currency:'RUB'},function(){ location.href=d.url; });
     })
     .catch(function(e){ $('payGo').disabled=false; drawTariffs(); toast(e.message||'Не удалось начать оплату, попробуйте ещё раз'); });
 };
@@ -1916,7 +1916,7 @@ function formRestore(f){
 function afterPayment(){
   var qs=new URLSearchParams(location.search), pend=null;
   try{ pend=JSON.parse(store('xpq_pending')||'null'); }catch(e){}
-  if(qs.get('fail')){ toast('Оплата не прошла. Попробуйте ещё раз'); if(history.replaceState) history.replaceState(null,'',location.pathname); return; }
+  if(qs.get('fail')){ goal('pay_fail'); toast('Оплата не прошла. Попробуйте ещё раз'); if(history.replaceState) history.replaceState(null,'',location.pathname); return; }
   var inv=qs.get('InvId')||qs.get('inv'); if(!inv && !(pend && qs.get('paid'))) return;
   inv=inv||pend.inv; if(TEST||!inv) return;
   if(history.replaceState) history.replaceState(null,'',location.pathname);
@@ -1925,6 +1925,7 @@ function afterPayment(){
     fetch(CONFIG.API_URL+'?a=status&inv='+encodeURIComponent(inv)).then(function(r){return r.json();}).then(function(d){
       if(d.paid&&d.key) return activateKey(d.key).then(function(l){
         $('waitModal').style.display='none'; store('xpq_pending','');
+        var tf=(pend&&pend.tariff)||l.tariff; goal('pay_success',{tariff:tf,order_price:tPrice(tf),currency:'RUB'});
         toast('Оплата прошла! Ключ '+l.key+' отправлен на email ⭐');
         if(pend&&pend.form){ formRestore(pend.form); if(pend.build) make(); }
       });
@@ -2564,7 +2565,8 @@ function loadForm(){ try{ var f=JSON.parse(store('xpq_form')||'null'); if(!f) re
 
 $('footTariffs').onclick=function(e){ e.preventDefault(); openTariffs(null); };
 /* ---------- мои квесты: хранение ---------- */
-function goal(n){ try{ if(window.ym&&CONFIG.YM) ym(CONFIG.YM,'reachGoal',n); }catch(e){} }
+function goal(n,params,cb){ var done=false, fin=function(){ if(!done){ done=true; if(cb) cb(); } }; try{ if(window.ym&&CONFIG.YM) ym(CONFIG.YM,'reachGoal',n,params||undefined,fin); }catch(e){} if(cb) setTimeout(fin,700); }
+function tPrice(id){ var t=(CONFIG.TARIFFS||[]).filter(function(x){ return x.id===id; })[0]; return t?t.price:0; }
 function newQid(){ var a='abcdefghijkmnpqrstuvwxyz23456789',s=''; for(var i=0;i<10;i++) s+=a[Math.floor(Math.random()*a.length)]; return s; }
 function qAll(){ try{ return JSON.parse(store('xpq_quests')||'{}')||{}; }catch(e){ return {}; } }
 function qGet(id){ return qAll()[id]||null; }
