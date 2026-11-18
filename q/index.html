@@ -81,8 +81,6 @@ body.mode-landing #wizard, body.mode-landing #resultScreen, body.mode-landing #m
 #myScreen .qitem .t b{display:block;font-size:16px}#myScreen .qitem .t span{font-size:13px;color:#6b6b6b}
 .qtag{display:inline-block;font-size:12px;padding:2px 8px;border-radius:999px;margin-left:6px;vertical-align:middle}
 .qtag.ok{background:#e3f4e9;color:#1f7a45}.qtag.dr{background:#fff1d6;color:#8a5a00}
-#printAll{display:none}
-@media print{body.pall #app{display:none!important}body.pall #printAll{display:block!important;position:static!important;visibility:visible!important;width:auto;padding:10mm;box-sizing:border-box}body.pall #printAll *{visibility:visible!important}}
 @media print{.pbreak{break-before:page;page-break-before:always}}
 .hero{background:linear-gradient(135deg,#1f6b45 0%,#16425b 55%,#3b1f6b 100%);color:#fff;border-radius:24px;padding:44px 34px;position:relative;overflow:hidden}
 .hero h1{font-size:40px;line-height:1.1;margin:0 0 14px;max-width:640px}
@@ -140,7 +138,7 @@ body.mode-landing #wizard, body.mode-landing #resultScreen, body.mode-landing #m
 .wstep h2{margin:0 0 4px;font-size:24px}
 .wstep .sub{color:var(--muted);margin:0 0 18px}
 .lbl{display:block;font-size:14px;font-weight:700;margin:18px 0 8px}
-input[type=text],select,textarea{width:100%;padding:12px 14px;border:1px solid #d8d6d0;border-radius:12px;background:#fff;font-size:16px}
+input[type=text],input[type=tel],select,textarea{width:100%;padding:12px 14px;border:1px solid #d8d6d0;border-radius:12px;background:#fff;font-size:16px}
 textarea{min-height:64px;resize:vertical}
 .tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 @media(max-width:700px){.tgrid{grid-template-columns:1fr}}
@@ -383,9 +381,8 @@ footer{margin:30px 0 10px;font-size:12px;color:var(--muted);text-align:center}
 footer a{color:inherit}
 
 @media print{
-  @page{size:A4;margin:0}
+  @page{size:A4;margin:10mm}
   html,body{margin:0!important}
-  .print-this{padding:10mm!important;box-sizing:border-box}
   body{background:#fff}
   body *{visibility:hidden}
   .print-this,.print-this *{visibility:visible}
@@ -1892,18 +1889,32 @@ $$('#rnav button').forEach(function(b){ b.onclick=function(){ tab=b.dataset.t; s
 function askSave(){ $('saveModal').style.display='flex'; }
 $('saveBtn').onclick=askSave; $('lockSave').onclick=askSave; $('saveNo').onclick=function(){ $('saveModal').style.display='none'; };
 $('saveYes').onclick=function(){ $('saveModal').style.display='none'; CUR.saved=true; CUR.savedAt=now(); persist(); goal('quest_save'); render(); tab='letter'; showTab(); toast(TOK?'Квест сохранён в профиле ✅':'Квест сохранён на этом устройстве ✅'); };
-$('printAllBtn').onclick=function(){
-  var old=$('printAll'); if(old) old.remove();
-  var box=document.createElement('div'); box.id='printAll'; box.className='print-this';
-  ['t-cards','t-letter','t-cert','t-script'].forEach(function(id,k){ var c=$(id).cloneNode(true); c.removeAttribute('id'); c.style.display='block'; if(k) c.classList.add('pbreak'); box.appendChild(c); });
-  $$('.print-this').forEach(function(e){e.classList.remove('print-this');});
-  box.className=''; box.querySelectorAll('.no-print,button').forEach(function(e){ e.remove(); });
-  document.body.appendChild(box); document.body.classList.add('pall'); goal('print_all');
-  var done=function(){ document.body.classList.remove('pall'); var b=$('printAll'); if(b) b.remove(); window.removeEventListener('afterprint',done); };
-  window.addEventListener('afterprint',done);
-  try{ window.print(); }catch(e){}
-  setTimeout(function(){ if(!window.matchMedia||!matchMedia('print').matches) done(); },60000);
-};
+/* Печать через отдельный чистый документ: в нём только нужные листы, поля 10 мм на каждой странице */
+function printDoc(ids){
+  var old=$('printFrame'); if(old) old.remove();
+  var css=$$('style').map(function(x){ return '<style>'+x.textContent+'</style>'; }).join('')+$$('link[rel=stylesheet]').map(function(l){ return '<link rel="stylesheet" href="'+l.href+'">'; }).join('');
+  var body=ids.map(function(id,k){ var c=$(id).cloneNode(true); c.removeAttribute('id'); c.removeAttribute('style'); c.classList.remove('print-this');
+    c.querySelectorAll('.no-print,button,input,textarea,select,canvas').forEach(function(e){ e.remove(); });
+    return '<section class="psec'+(k?' pbreak':'')+'">'+c.innerHTML+'</section>'; }).join('');
+  var extra='<style>@page{size:A4;margin:10mm}html,body{margin:0;padding:0;background:#fff}body{width:auto}'
+    +'@media print{body *{visibility:visible!important}.no-print{display:none!important}}'
+    +'.psec{display:block}.pbreak{break-before:page;page-break-before:always}'
+    +'.cards{display:block}.card{break-inside:avoid;page-break-inside:avoid;min-height:128mm;margin:0 0 6mm}'
+    +'.letter,.cert,.st,.inv,.token{break-inside:avoid;page-break-inside:avoid}h3.sec{break-after:avoid;page-break-after:avoid}'
+    +'*{-webkit-print-color-adjust:exact;print-color-adjust:exact}</style>';
+  var f=document.createElement('iframe'); f.id='printFrame'; f.setAttribute('aria-hidden','true');
+  f.style.cssText='position:fixed;right:0;bottom:0;width:210mm;height:10px;border:0;opacity:0;pointer-events:none';
+  document.body.appendChild(f);
+  var d=f.contentDocument; d.open();
+  d.write('<!doctype html><html lang="ru" style="'+esc(document.documentElement.style.cssText)+'"><head><meta charset="utf-8"><title>'+esc(document.title)+'</title>'+css+extra+'</head><body>'+body+'</body></html>');
+  d.close();
+  var go=function(){ try{ f.contentWindow.focus(); f.contentWindow.print(); }catch(e){ window.print(); } setTimeout(function(){ var x=$('printFrame'); if(x) x.remove(); },120000); };
+  var wait=[].slice.call(d.images).map(function(im){ return im.complete?Promise.resolve():new Promise(function(r){ im.onload=im.onerror=r; }); });
+  if(d.fonts&&d.fonts.ready) wait.push(d.fonts.ready);
+  var fired=false, t=setTimeout(function(){ if(fired) return; fired=true; go(); },4000);
+  Promise.all(wait).then(function(){ if(fired) return; fired=true; clearTimeout(t); setTimeout(go,150); });
+}
+$('printAllBtn').onclick=function(){ goal('print_all'); printDoc(['t-cards','t-letter','t-cert','t-script']); };
 $('bPrev').onclick=function(){ var i=TABS.indexOf(tab); if(i>0){ tab=TABS[i-1]; showTab(); } };
 $('bNext').onclick=function(){ var i=TABS.indexOf(tab); if(!(CUR&&CUR.saved)&&tab==='cards'){ askSave(); return; } if(i<TABS.length-1){ tab=TABS[i+1]; showTab(); } else nav('/my/'); };
 function showTab(){
@@ -1928,7 +1939,7 @@ function showTab(){
 $('printBtn').onclick=function(){
   $$('.print-this').forEach(function(e){e.classList.remove('print-this');});
   $('t-'+tab).classList.add('print-this');
-  try{ window.print(); }catch(e){}
+  printDoc(['t-'+tab]);
   if(inFrame) $('printNote').textContent='В предпросмотре печать может не работать — на вашем сайте она работает.';
 };
 
