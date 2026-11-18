@@ -566,7 +566,7 @@ footer a{color:inherit}
         <button class="btn sm ghost" id="regenBtn">🎲 Другой вариант</button>
         <button class="btn sm" id="saveBtn">✅ Сохранить квест</button>
         <button class="btn sm ghost" id="copyBtn" style="display:none">📄 Новый на основе этого</button>
-        <input type="text" id="brandIn" placeholder="Ваша подпись на материалах" style="display:none;width:220px;padding:8px 10px;font-size:14px">
+        <input type="text" id="brandIn" placeholder="Своя подпись (пусто — «квест создан в XPlainQuests»)" title="Если оставить пустым, на материалах будет «квест создан в» и логотип XPlainQuests" style="display:none;width:300px;max-width:100%;padding:8px 10px;font-size:14px">
       </div>
     </div>
     <div id="savedBar" class="savedbar no-print" style="display:none"></div>
@@ -1812,10 +1812,11 @@ function proFor(p){ if(TEST) return !simFree; if(passLic()) return true; var k=k
 function openAll(){ return TEST ? !simFree : !!passLic(); }
 function isProfi(){ return !TEST && LICS.some(function(l){ return (l.tariff==='pro'||l.tariff==='unlim') && l.exp>now(); }); }
 function fmtExp(t){ return t-now()>50*365*864e5 ? 'бессрочно' : 'до '+fmtD(t); }
-function brand(){ return isProfi() ? (store('xpq_brand')||'') : CONFIG.SITE_LABEL; }
+function customBrand(){ return isProfi() ? (store('xpq_brand')||'').trim() : ''; }
+function brand(){ return customBrand() || CONFIG.SITE_LABEL; }
 function markSVG(){ var m=document.querySelector('.top .lmark'); return m?m.innerHTML:''; }
-function brandHTML(pre){ if(isProfi()) return esc(brand()); return '<span class="bl">'+(pre?'<span style="font-weight:500;color:#555">'+pre+'</span>':'')+markSVG()+'<span><b>XPlain</b><i>Quests</i></span></span>'; }
-function brandCls(){ return isProfi()?'':' lg'; }
+function brandHTML(pre){ if(customBrand()) return esc(customBrand()); pre=pre||'квест создан в&nbsp;'; return '<span class="bl">'+(pre?'<span style="font-weight:500;color:#555">'+pre+'</span>':'')+markSVG()+'<span><b>XPlain</b><i>Quests</i></span></span>'; }
+function brandCls(){ return customBrand()?'':' lg'; }
 setTimeout(function(){ try{ logoImg(); }catch(e){} },300);
 var LOGO_IMG=null; function logoImg(){ if(!LOGO_IMG){ var sv=markSVG(); if(sv){ LOGO_IMG=new Image(); LOGO_IMG.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(sv.replace('<svg','<svg width="400" height="400"')); } } return LOGO_IMG; }
 function needsPro(p){
@@ -2403,7 +2404,7 @@ function drawInv(){
     var d=invData(th,p,name);
     h+='<div class="inv th-'+th.id+'">'+(th.id==='ny'?'<div style="position:absolute;left:0;right:0;top:0;height:30px;background-image:var(--garland);background-size:auto 30px;background-repeat:repeat-x"></div><div style="height:22px"></div>':'')+(gen?strip(th):'')+'<div class="ie">'+th.e+'</div><div class="iname">'+esc(name)+'</div><div class="itxt"><b>'+esc(d.lead)+'</b><br>'+esc(d.title)+'</div>';
     d.rows.forEach(function(r){ h+='<div class="irow">'+esc(r)+'</div>'; });
-    h+='<div class="itxt" style="margin-top:8px">Будет настоящий квест с загадками и сокровищем!</div><div class="ifoot'+brandCls()+'">'+(brand()?brandHTML(isProfi()?'':'квест создан в&nbsp;'):'')+'</div>';
+    h+='<div class="itxt" style="margin-top:8px">Будет настоящий квест с загадками и сокровищем!</div><div class="ifoot'+brandCls()+'">'+brandHTML()+'</div>';
     h+='<div class="iacts no-print"><button class="btn sm" data-img="'+i+'">🖼️ Картинка</button><button class="btn sm ghost" data-txt="'+i+'">📋 Текст для мессенджера</button></div></div>';
   });
   $('invOut').innerHTML=h+'</div>';
@@ -2428,7 +2429,7 @@ function invImage(th,d){
   y+=30; x.textAlign='left'; x.font='38px Rubik, sans-serif';
   d.rows.forEach(function(r){ var ls=wrapLines(x,r,860); x.fillStyle='rgba(255,255,255,.75)'; x.fillRect(90,y-44,900,ls.length*50+24); x.fillStyle=th.pal.ink; ls.forEach(function(l){ x.fillText(l,110,y); y+=50; }); y+=34; });
   x.textAlign='center'; x.fillStyle=th.pal.main; x.font='bold 40px Rubik, sans-serif'; x.fillText('Будет настоящий квест с сокровищем!',W/2,Math.min(H-120,y+40));
-  if(isProfi()){ x.globalAlpha=.5; x.font='26px Rubik, sans-serif'; if(brand()) x.fillText(brand(),W/2,H-80); x.globalAlpha=1; }
+  if(customBrand()){ x.globalAlpha=.5; x.font='26px Rubik, sans-serif'; x.fillText(customBrand(),W/2,H-80); x.globalAlpha=1; }
   else { var li=logoImg(), t0='квест создан в  ', t1='XPlain', t2='Quests'; x.font='28px Rubik, sans-serif'; var w0=x.measureText(t0).width; x.font='bold 30px Rubik, sans-serif'; var w1=x.measureText(t1).width,w2=x.measureText(t2).width; var tw=w0+44+10+w1+w2, lx=W/2-tw/2, ly=H-80;
     x.textAlign='left'; x.font='28px Rubik, sans-serif'; x.fillStyle='#666'; x.fillText(t0,lx,ly); lx+=w0; if(li&&li.complete&&li.naturalWidth) x.drawImage(li,lx,ly-34,44,44); x.font='bold 30px Rubik, sans-serif'; x.fillStyle='#1f1f24'; x.fillText(t1,lx+54,ly); x.fillStyle='#d98a0b'; x.fillText(t2,lx+54+w1,ly); x.textAlign='center'; }
   c.toBlob(function(blob){
