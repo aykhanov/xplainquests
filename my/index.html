@@ -1815,7 +1815,7 @@ function isProfi(){ return !TEST && LICS.some(function(l){ return (l.tariff==='p
 function fmtExp(t){ return t-now()>50*365*864e5 ? 'бессрочно' : 'до '+fmtD(t); }
 function brand(){ return isProfi() ? (store('xpq_brand')||'') : CONFIG.SITE_LABEL; }
 function markSVG(){ var m=document.querySelector('.top .lmark'); return m?m.innerHTML:''; }
-function brandHTML(pre){ if(isProfi()) return esc(brand()); return '<span class="bl">'+(pre?'<span style="font-weight:500;color:#555">'+pre+'</span>':'')+markSVG()+'<span><b>XPlain</b><i>Quests</i></span><span class="bu">xplainquests.ru</span></span>'; }
+function brandHTML(pre){ if(isProfi()) return esc(brand()); return '<span class="bl">'+(pre?'<span style="font-weight:500;color:#555">'+pre+'</span>':'')+markSVG()+'<span><b>XPlain</b><i>Quests</i></span></span>'; }
 function brandCls(){ return isProfi()?'':' lg'; }
 setTimeout(function(){ try{ logoImg(); }catch(e){} },300);
 var LOGO_IMG=null; function logoImg(){ if(!LOGO_IMG){ var sv=markSVG(); if(sv){ LOGO_IMG=new Image(); LOGO_IMG.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(sv.replace('<svg','<svg width="400" height="400"')); } } return LOGO_IMG; }
@@ -2304,7 +2304,7 @@ function render(){
     if(s.task.puzzle) c+='<div class="puzzle">'+puzzleHTML(Q.puzzle(s.task.puzzle,s.code,QC.seed+s.i))+'</div>';
     if(p.mode==='qr') c+='<div class="qr"><div class="qbox" data-qr="'+esc(Q.encodePlayer(th.id,s,p.young,p.kids,QC.seed))+'"></div><div><b>Прошли испытание?</b><br>Сканируйте код и введите '+(s.isRiddle?'ответ':s.task.type==='cipher'?'разгаданное слово':'кодовое слово')+' — откроется место следующей подсказки!</div></div>';
     else c+='<div class="fold"><div class="foldline">✂ загните по линии · открыть, только когда испытание пройдено!</div><div class="next"><div class="ne">'+s.next.e+'</div><div><div class="nl">'+(s.last?'🎁 Сокровище ждёт здесь':'Следующая подсказка')+'</div><div class="nr">'+esc(s.next.r)+'</div></div></div></div>';
-    c+='<div class="foot'+brandCls()+'">'+brandHTML()+'</div></div>';
+    c+='<div class="foot'+brandCls()+'">'+brandHTML('квест создан в&nbsp;')+'</div></div>';
   });
   c+='</div><div class="tokens"><div style="width:100%;text-align:center;font-weight:700;color:var(--main)">✂ Жетоны спасения — вырежьте и отдайте '+(p.kids===1?'ребёнку':p.fmt==='teams'?'каждой команде по 3':'детям')+' вместе с письмом</div>';
   var teamsN=p.fmt==='teams'?2:1;
@@ -2328,7 +2328,7 @@ function render(){
     var cn=th.corners, pos=['top:14px;left:18px','top:14px;right:18px','bottom:14px;left:18px','bottom:14px;right:18px'];
     var corners=th.id==='ny'?'':cn.map(function(e,i){return '<div class="corner" style="'+pos[i]+'">'+e+'</div>';}).join('');
     if(th.id==='ny') corners='<div class="stripT"></div><div class="corner" style="bottom:14px;left:18px">🎄</div><div class="corner" style="bottom:14px;right:18px">🎁</div>';
-    $('certBox').innerHTML='<div class="cert th-'+th.id+'">'+corners+'<div class="ce">🏅</div><h2>СЕРТИФИКАТ</h2><div class="role">'+esc(th.certRole)+'</div><div>вручается</div><div class="names">'+(names?esc(names):'________________________')+'</div><div class="why">за смелость, смекалку и '+(p.kids>1?'командный дух':'находчивость')+'<br>в квесте «'+esc(th.title)+'»</div><div class="sig">'+esc(th.leader)+' '+th.e+'</div><div class="site'+brandCls()+'">'+brandHTML()+'</div></div>';
+    $('certBox').innerHTML='<div class="cert th-'+th.id+'">'+corners+'<div class="ce">🏅</div><h2>СЕРТИФИКАТ</h2><div class="role">'+esc(th.certRole)+'</div><div>вручается</div><div class="names">'+(names?esc(names):'________________________')+'</div><div class="why">за смелость, смекалку и '+(p.kids>1?'командный дух':'находчивость')+'<br>в квесте «'+esc(th.title)+'»</div><div class="sig">'+esc(th.leader)+' '+th.e+'</div><div class="site'+brandCls()+'">'+brandHTML('квест создан в&nbsp;')+'</div></div>';
   };
   $('certNames').oninput=drawCert; $('certNames').onkeydown=function(){ certTouched=true; }; certTouched=!!(CUR&&CUR.cert); drawCert();
 
@@ -2430,8 +2430,8 @@ function invImage(th,d){
   d.rows.forEach(function(r){ var ls=wrapLines(x,r,860); x.fillStyle='rgba(255,255,255,.75)'; x.fillRect(90,y-44,900,ls.length*50+24); x.fillStyle=th.pal.ink; ls.forEach(function(l){ x.fillText(l,110,y); y+=50; }); y+=34; });
   x.textAlign='center'; x.fillStyle=th.pal.main; x.font='bold 40px Rubik, sans-serif'; x.fillText('Будет настоящий квест с сокровищем!',W/2,Math.min(H-120,y+40));
   if(isProfi()){ x.globalAlpha=.5; x.font='26px Rubik, sans-serif'; if(brand()) x.fillText(brand(),W/2,H-80); x.globalAlpha=1; }
-  else { var li=logoImg(), t1='XPlain', t2='Quests', t3='  xplainquests.ru'; x.font='bold 30px Rubik, sans-serif'; var w1=x.measureText(t1).width,w2=x.measureText(t2).width; x.font='28px Rubik, sans-serif'; var w3=x.measureText(t3).width; var tw=44+10+w1+w2+w3, lx=W/2-tw/2, ly=H-80;
-    if(li&&li.complete&&li.naturalWidth) x.drawImage(li,lx,ly-34,44,44); x.textAlign='left'; x.font='bold 30px Rubik, sans-serif'; x.fillStyle='#1f1f24'; x.fillText(t1,lx+54,ly); x.fillStyle='#d98a0b'; x.fillText(t2,lx+54+w1,ly); x.font='28px Rubik, sans-serif'; x.fillStyle='#555'; x.fillText(t3,lx+54+w1+w2,ly); x.textAlign='center'; }
+  else { var li=logoImg(), t0='квест создан в  ', t1='XPlain', t2='Quests'; x.font='28px Rubik, sans-serif'; var w0=x.measureText(t0).width; x.font='bold 30px Rubik, sans-serif'; var w1=x.measureText(t1).width,w2=x.measureText(t2).width; var tw=w0+44+10+w1+w2, lx=W/2-tw/2, ly=H-80;
+    x.textAlign='left'; x.font='28px Rubik, sans-serif'; x.fillStyle='#666'; x.fillText(t0,lx,ly); lx+=w0; if(li&&li.complete&&li.naturalWidth) x.drawImage(li,lx,ly-34,44,44); x.font='bold 30px Rubik, sans-serif'; x.fillStyle='#1f1f24'; x.fillText(t1,lx+54,ly); x.fillStyle='#d98a0b'; x.fillText(t2,lx+54+w1,ly); x.textAlign='center'; }
   c.toBlob(function(blob){
     var file; try{ file=new File([blob],'priglashenie-'+d.name+'.png',{type:'image/png'}); }catch(e){}
     if(file && navigator.canShare && navigator.canShare({files:[file]})){ navigator.share({files:[file],title:'Приглашение'}).catch(function(){}); return; }
