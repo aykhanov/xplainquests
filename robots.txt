@@ -5,3 +5,5 @@ Disallow: /fail.html
 Disallow: /tg.html
 
 Sitemap: https://xplainquests.ru/sitemap.xml
+Clean-param: theme /create/
+Clean-param: id&tab /q/

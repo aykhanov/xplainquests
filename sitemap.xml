@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://xplainquests.ru/</loc><lastmod>2026-11-15</lastmod><priority>1.0</priority></url>
+  <url><loc>https://xplainquests.ru/</loc><lastmod>2026-11-18</lastmod><priority>1.0</priority></url>
+  <url><loc>https://xplainquests.ru/kvest-piraty/</loc><lastmod>2026-11-18</lastmod><priority>0.8</priority></url>
+  <url><loc>https://xplainquests.ru/kvest-kosmos/</loc><lastmod>2026-11-18</lastmod><priority>0.8</priority></url>
+  <url><loc>https://xplainquests.ru/novogodnij-kvest/</loc><lastmod>2026-11-18</lastmod><priority>0.8</priority></url>
+  <url><loc>https://xplainquests.ru/detektivnyj-kvest/</loc><lastmod>2026-11-18</lastmod><priority>0.8</priority></url>
+  <url><loc>https://xplainquests.ru/volshebnyj-kvest/</loc><lastmod>2026-11-18</lastmod><priority>0.8</priority></url>
+  <url><loc>https://xplainquests.ru/kvest-dinozavry/</loc><lastmod>2026-11-18</lastmod><priority>0.8</priority></url>
+  <url><loc>https://xplainquests.ru/kvest-supergeroi/</loc><lastmod>2026-11-18</lastmod><priority>0.8</priority></url>
   <url><loc>https://xplainquests.ru/offer.html</loc><lastmod>2026-11-15</lastmod><priority>0.3</priority></url>
   <url><loc>https://xplainquests.ru/privacy.html</loc><lastmod>2026-11-15</lastmod><priority>0.3</priority></url>
 </urlset>

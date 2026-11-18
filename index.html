@@ -41,6 +41,8 @@ button,input,select,textarea{font:inherit;color:inherit}
 .tag{color:var(--muted);font-size:14px}
 .acc-btn{margin-left:auto;font-size:13px;padding:6px 10px;border-radius:999px;background:#fff;border:1px solid var(--line);cursor:pointer;font:inherit;font-size:13px;color:inherit;max-width:190px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .acc-btn+.pro-badge{margin-left:8px}
+.acc-btn+.acc-btn{margin-left:8px}
+a.acc-btn{text-decoration:none}
 .acc-keys{margin:10px 0;padding:0;list-style:none}.acc-keys li{border:1px solid #e3e1db;border-radius:12px;padding:10px 12px;margin-bottom:8px;font-size:14px}.acc-keys b{font-family:monospace;font-size:14px}
 .tg-btn{background:#2aabee!important;color:#fff!important;width:100%}
 .tg-qr{display:flex;gap:14px;align-items:center;background:#f4f8fb;border-radius:14px;padding:12px;margin:12px 0}.tg-qr .q{background:#fff;padding:8px;border-radius:10px;flex:none}.tg-qr .q img,.tg-qr .q canvas{display:block;width:120px!important;height:120px!important}
@@ -57,7 +59,28 @@ body.th-spa .deco-strip{display:block;background-image:var(--stars);height:26px;
 .logo{cursor:pointer}
 #landing{display:none}
 body.mode-landing #landing{display:block}
-body.mode-landing #wizard, body.mode-landing #resultScreen{display:none!important}
+body.mode-landing #wizard, body.mode-landing #resultScreen, body.mode-landing #myScreen{display:none!important}
+.cbeat{font-style:italic;font-size:14px;color:var(--main);background:rgba(255,255,255,.7);border-radius:10px;padding:6px 10px;margin:4px 0 8px}
+.rbeat{font-style:italic;background:var(--soft);border-radius:12px;padding:10px 14px;margin:0 0 10px;color:var(--main)}
+.storybox{margin:0 0 12px}.storybox .lbl{margin-bottom:6px}
+.schips{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px}
+.schip{border:2px solid #e3e1db;background:#fff;border-radius:14px;padding:10px 12px;text-align:left;cursor:pointer;font:inherit;color:inherit}
+.schip b{display:block;font-size:15px}.schip span{font-size:13px;color:#6b6b6b}
+.schip.on{border-color:var(--main);background:var(--soft)}
+.savedbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:#eef8f1;border:1px solid #bfe3cc;border-radius:14px;padding:10px 14px;margin:0 0 12px;font-size:15px}
+.stagebar{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 8px;font-size:13px}
+.stagebar span{padding:4px 10px;border-radius:999px;background:#f1efe9;color:#6b6b6b}
+.stagebar span.on{background:var(--main);color:#fff;font-weight:700}
+.stagebar span.done{background:#e3f4e9;color:#1f7a45}
+.rnav button.locked{opacity:.55}
+.lockpanel{text-align:center;padding:30px 16px}.lockpanel .e{font-size:44px}
+#myScreen .qitem{display:flex;gap:12px;align-items:center;border:1px solid #e3e1db;border-radius:16px;padding:12px 14px;margin-bottom:10px;flex-wrap:wrap}
+#myScreen .qitem .e{font-size:34px}#myScreen .qitem .t{flex:1;min-width:200px}
+#myScreen .qitem .t b{display:block;font-size:16px}#myScreen .qitem .t span{font-size:13px;color:#6b6b6b}
+.qtag{display:inline-block;font-size:12px;padding:2px 8px;border-radius:999px;margin-left:6px;vertical-align:middle}
+.qtag.ok{background:#e3f4e9;color:#1f7a45}.qtag.dr{background:#fff1d6;color:#8a5a00}
+#printAll{position:absolute;left:-10000px;top:0;width:210mm}
+@media print{.pbreak{break-before:page;page-break-before:always}}
 .hero{background:linear-gradient(135deg,#1f6b45 0%,#16425b 55%,#3b1f6b 100%);color:#fff;border-radius:24px;padding:44px 34px;position:relative;overflow:hidden}
 .hero h1{font-size:40px;line-height:1.1;margin:0 0 14px;max-width:640px}
 .hero p{font-size:19px;max-width:600px;margin:0 0 24px;opacity:.95}
@@ -372,6 +395,8 @@ footer a{color:inherit}
 }
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Нужно ли что-то покупать для квеста?", "acceptedAnswer": {"@type": "Answer", "text": "Нет. Вы отмечаете, что есть дома или под рукой, и в квест попадают только задания, для которых всё есть. Нужен принтер для карточек и небольшое сокровище в финале."}}, {"@type": "Question", "name": "Для какого возраста подходит?", "acceptedAnswer": {"@type": "Answer", "text": "Для детей от 4 до 13 лет. Задание попадает в квест, только если подходит и младшему, и старшему ребёнку."}}, {"@type": "Question", "name": "Сколько времени занимает подготовка?", "acceptedAnswer": {"@type": "Answer", "text": "Собрать квест — около 5 минут, распечатать и разложить карточки — 10–15 минут. Сам квест длится 30, 45 или 60 минут."}}, {"@type": "Question", "name": "Можно провести квест в детском саду или школе?", "acceptedAnswer": {"@type": "Answer", "text": "Да, тайники и задания подбираются под группу, класс или зал."}}, {"@type": "Question", "name": "Что, если дети не справятся с заданием?", "acceptedAnswer": {"@type": "Answer", "text": "Квест нельзя проиграть: у каждого задания есть упрощённые попытки и откуп, а у детей — жетоны для подсказок."}}]}</script>
+<script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=114339420','ym');ym(114339420,'init',{ssr:true,webvisor:true,clickmap:true,accurateTrackBounce:true,trackLinks:true});</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/114339420" style="position:absolute;left:-9999px" alt=""></div></noscript>
 </head>
 <body>
 <div id="app">
@@ -380,7 +405,7 @@ footer a{color:inherit}
   <header class="top no-print">
     <div class="logo"><b>XPlain</b><i>Quests</i></div>
     <div class="tag">Квест на детский праздник за 5 минут</div>
-    <button class="acc-btn" id="accBtn" type="button">👤 Войти</button><div class="pro-badge" id="proBadge"></div>
+    <a class="acc-btn" id="myBtn" href="/my/">📚 Мои квесты</a><button class="acc-btn" id="accBtn" type="button">👤 Войти</button><div class="pro-badge" id="proBadge"></div>
   </header>
 
   <!-- ================= МАСТЕР ================= -->
@@ -529,9 +554,14 @@ footer a{color:inherit}
       <div class="acts">
         <button class="btn sm ghost" id="editBtn">⚙️ Изменить настройки</button>
         <button class="btn sm ghost" id="regenBtn">🎲 Другой вариант</button>
+        <button class="btn sm" id="saveBtn">✅ Сохранить квест</button>
+        <button class="btn sm ghost" id="copyBtn" style="display:none">📄 Новый на основе этого</button>
         <input type="text" id="brandIn" placeholder="Ваша подпись на материалах" style="display:none;width:220px;padding:8px 10px;font-size:14px">
       </div>
     </div>
+    <div id="savedBar" class="savedbar no-print" style="display:none"></div>
+    <div id="storyBox" class="storybox no-print"></div>
+    <div class="stagebar no-print" id="stageBar"></div>
     <div class="rnav no-print" id="rnav">
       <button data-t="invite"><b>💌</b><span><i class="num">1</i>Приглашения</span></button>
       <button data-t="script"><b>📋</b><span><i class="num">2</i>Подготовка</span></button>
@@ -543,6 +573,7 @@ footer a{color:inherit}
     <div class="howto no-print" id="howto"></div>
     <div class="toolbar no-print" id="toolbar">
       <button class="btn sm" id="printBtn">🖨️ Распечатать</button>
+      <button class="btn sm ghost" id="printAllBtn" style="display:none">🖨️ Напечатать всё: карточки, письмо, сертификат, подготовку</button>
       <span class="note" id="printNote"></span>
     </div>
     <section id="t-invite" style="display:none"></section>
@@ -551,11 +582,20 @@ footer a{color:inherit}
     <section id="t-letter" style="display:none"></section>
     <section id="t-cert" style="display:none"></section>
     <section id="t-remote" style="display:none"></section>
+    <section id="t-lock" class="no-print" style="display:none"><div class="lockpanel"><div class="e">🔒</div><h3>Сначала сохраните квест</h3><p class="note" style="max-width:520px;margin:0 auto 14px">Проверьте приглашения, подготовку и карточки — замените задания, если что‑то не подходит. После сохранения откроются письмо‑старт, сертификат и пульт на празднике. Имена, дату и тексты можно будет менять и потом.</p><button class="btn" id="lockSave">✅ Сохранить квест</button></div></section>
     <div class="bnav no-print"><button class="btn ghost" id="bPrev"></button><button class="btn" id="bNext"></button></div>
   </div>
 
+  <div id="myScreen" class="panel no-print" style="display:none">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px"><h1 style="margin:0;font-size:24px">📚 Мои квесты</h1><button class="btn sm" id="myNew" style="margin-left:auto">✨ Собрать новый квест</button></div>
+    <div id="myNote" class="note" style="margin-bottom:12px"></div>
+    <div id="myList"></div>
+  </div>
+  <div class="modal" id="saveModal"><div class="box" style="max-width:460px"><h3 style="margin-top:0">✅ Сохранить квест?</h3><p>После сохранения <b>задания, тайники, сюжет и настройки</b> зафиксируются — так квест не перемешается перед праздником.</p><p class="note">Имена, дату, адрес, приглашения и сертификат можно будет менять в любое время. Если понадобится другой набор заданий — соберёте новый квест на основе этого.</p><div style="display:flex;gap:8px;justify-content:flex-end;margin-top:14px"><button class="btn ghost" id="saveNo">Ещё проверю</button><button class="btn" id="saveYes">Сохранить</button></div></div></div>
+
   <footer class="no-print">
-    <div><a href="offer.html" target="_blank" rel="noopener">Публичная оферта</a> · <a href="privacy.html" target="_blank" rel="noopener">Политика обработки персональных данных</a> · <a href="#" id="footTariffs">Тарифы</a></div>
+    <div style="margin-bottom:8px">Квесты по темам: <a href="/kvest-piraty/">пиратский</a> · <a href="/kvest-kosmos/">космический</a> · <a href="/novogodnij-kvest/">новогодний</a> · <a href="/detektivnyj-kvest/">детективный</a> · <a href="/volshebnyj-kvest/">волшебный</a> · <a href="/kvest-dinozavry/">динозавры</a> · <a href="/kvest-supergeroi/">супергерои</a></div>
+    <div><a href="/offer.html" target="_blank" rel="noopener">Публичная оферта</a> · <a href="/privacy.html" target="_blank" rel="noopener">Политика обработки персональных данных</a> · <a href="#" id="footTariffs">Тарифы</a></div>
     <div style="margin-top:6px">Ханов Алексей Юрьевич, самозанятый (НПД), ИНН 525633830780 · XPlainQuests@yandex.com</div>
     <div style="margin-top:6px">© 2026 XPlainQuests · все персонажи оригинальные · квесты проводятся под присмотром взрослых</div>
   </footer>
@@ -613,6 +653,7 @@ footer a{color:inherit}
 */
 var CONFIG = {
   API_URL: "https://functions.yandexcloud.net/d4el9fue7moq7gi2hjuq",
+  YM: 114339420,            // счётчик Яндекс Метрики (aykhanov@yandex.ru)
   TG_APP: "login",         // короткое имя мини-приложения для входа (BotFather → /newapp)
   TG_BOT: "xplain_quests_bot", // имя бота для входа через Telegram (без @), например XPlainQuestsBot; пусто — кнопки Telegram нет
   SITE_LABEL: "XPlainQuests",          // подпись мелким шрифтом на материалах (в тарифе Профи — своя)
@@ -1138,6 +1179,141 @@ return {FORMATS:FORMATS,fmtsOf:fmtsOf,PLACES:PLACES,THEMES:THEMES,PROPS:PROPS,LO
 })();
 if(typeof module!=='undefined') module.exports={Q:Q,CONFIG:CONFIG};
 
+/* ---------- Сюжеты: 2–3 на тему. Подстановки как в заданиях: {leader} {villain} {Villain} {vf} {treasure} {n} {placeIn} ----------
+   t — название, hook — одна строка для выбора, letter — письмо‑старт (null — письмо темы),
+   pro — что сказать ведущему перед письмом, beats — сюжетные вставки на карточки (по кругу),
+   last — вставка на последнюю карточку, climax — перед сокровищем, fin — финальная речь.
+   Первое предложение каждой вставки самостоятельное: малышам показываем только его. */
+Q.STORIES={
+pir:[
+ {id:'klad',t:'Сокровища острова Ракушек',hook:'{Villain} украл сундук Капитана Бороды и спрятал его на берегу',letter:null,
+  pro:'Слышите? Кто‑то постучал в дверь… Под дверью лежит письмо с сургучной печатью. Кажется, это от самого Капитана Бороды!',
+  beats:['Вы ступили на остров Ракушек. На песке видны следы разбойника — он прошёл здесь совсем недавно!','Ветер доносит хриплый смех Кляксы. Он уверен, что вы не справитесь. Докажите обратное!','Под пальмой лежит обрывок старого паруса. На нём нарисована стрелка — вы на верном пути!','Попугай Капитана Бороды кричит с мачты: «Быстрее, юнги, Клякса уже близко!»','Начинается шторм! Настоящие пираты не боятся волн — держитесь вместе.','В подзорную трубу видно старый маяк. Где‑то рядом спрятана следующая подсказка.','Клякса потерял свою шляпу! Значит, он торопился — сундук совсем рядом.'],
+  last:'Это последнее испытание! Клякса оставил на сундуке хитрый замок — только самые смелые пираты смогут его открыть.',
+  climax:'Тишина… Слышите, как скрипит крышка сундука? Это он — сундук Капитана Бороды! Кто первым его найдёт?',
+  fin:'Капитан Борода гордится своей командой! Вы прошли все испытания, перехитрили разбойника Кляксу и вернули сокровища. Отныне вы — настоящие пираты острова Ракушек!'},
+ {id:'karta',t:'Карта из бутылки',hook:'Волны принесли бутылку с картой — но карта разорвана на части',
+  letter:'Если вы читаете это письмо, значит, волны принесли вам мою бутылку. Я — {leader}. Много лет назад я спрятал {treasure} и нарисовал карту. Но {villain} разорвал её на {n} кусочков и разбросал повсюду! Каждое испытание вернёт вам кусочек карты. Соберите её целиком — и сокровище ваше!',
+  pro:'Смотрите, что я нашёл у двери — настоящая бутылка с запиской внутри! Кто достанет письмо и прочитает его вслух?',
+  beats:['Первый кусочек карты найден! На нём нарисован берег и маленький крестик.','Второй кусочек! Здесь видны горы и тропинка через джунгли.','На этом кусочке нарисован череп и надпись: «Осторожно, ловушки!»','Кусочки начинают складываться: это остров в форме ракушки!','На обороте кусочка кто‑то нацарапал: «Клякса был здесь». Поторопитесь!','Этот кусочек мокрый от морской воды — значит, сокровище недалеко от воды.','Карта почти собрана! Осталось совсем немного.'],
+  last:'Последний кусочек карты! Как только вы его получите, станет ясно, где спрятан сундук.',
+  climax:'Карта собрана! Красный крестик указывает прямо сюда… Ищите!',
+  fin:'Вы собрали карту по кусочкам и нашли сокровище, которое пролежало спрятанным много лет! {leader} называет вас лучшими искателями сокровищ на всех морях.'},
+ {id:'kesha',t:'Попугай Кеша в плену',hook:'{Villain} похитил попугая, который знает, где сундук',
+  letter:'Пишет вам {leader}. Случилась беда: {villain} похитил моего попугая Кешу! Кеша — единственный, кто знает, где спрятан {treasure}. Клякса запер его и спрятал ключи в {n} местах. Пройдите испытания, освободите Кешу — и он сам покажет дорогу к сокровищу!',
+  pro:'Тсс… Мне только что передали срочное письмо. Капитан Борода просит о помощи — его друг в беде!',
+  beats:['Издалека слышно: «Кеша хор‑роший! Спасите Кешу!» Он где‑то рядом.','На полу лежит зелёное пёрышко. Это Кеша оставляет вам знаки!','Вы нашли первый ключ от клетки. Осталось ещё несколько!','Клякса поставил на пути ловушку. Будьте внимательны!','Кеша кричит: «Пр‑р‑равильно! Молодцы!» Он слышит, как вы стараетесь.','Ещё один ключ! Клякса начинает нервничать.','Клетка уже видна! Но замок на ней хитрый.'],
+  last:'Последний ключ! Освободите Кешу — он покажет, где спрятано сокровище.',
+  climax:'Кеша на свободе! Он хлопает крыльями и летит… прямо туда, где спрятан сундук!',
+  fin:'Вы спасли Кешу и нашли сокровище! Капитан Борода говорит, что такой смелой и доброй команды у него ещё не было. Кеша кричит: «Ур‑р‑ра! Спасибо, друзья!»'}
+],
+spa:[
+ {id:'zuzya',t:'Загадка планеты Зюзя',hook:'{Villain} взломал компьютер и спрятал капсулу на станции',letter:null,
+  pro:'Внимание! На станцию пришло зашифрованное сообщение от Командира Орбиты. Экипаж, приготовиться к чтению!',
+  beats:['Двигатели запущены! Ракета берёт курс на планету Зюзя.','Глитч оставил на экране надпись «Вам не догнать меня!» Посмотрим!','Метеоритный дождь! Пилоты, держите курс ровно.','Бортовой компьютер снова работает — он подсказывает следующие координаты.','Вы пролетаете мимо кольца Сатурна. Красота! Но отвлекаться нельзя.','Сигнал от капсулы становится всё сильнее. Мы близко!','Робот Глитч прячется где‑то рядом — слышно, как он пищит.'],
+  last:'Последнее испытание! Глитч поставил на капсулу код. Взломайте его!',
+  climax:'Сигнал на максимуме! Капсула с инопланетным сокровищем где‑то здесь… 3, 2, 1 — ищите!',
+  fin:'Миссия выполнена! Командир Орбита присваивает вам звание отважных космонавтов. Вы вернули капсулу и спасли станцию!'},
+ {id:'sos',t:'Сигнал SOS с планеты Зюзя',hook:'Маленькие зюзяне просят помощи: их маяк погас',
+  letter:'Говорит {leader}! Мы получили сигнал SOS с планеты Зюзя. Маленькие зюзяне просят помощи: {villain} разобрал их маяк на {n} деталей, и теперь они не могут найти дорогу домой. Пройдите испытания и соберите все детали! В благодарность зюзяне приготовили для вас {treasure}.',
+  pro:'Пи‑пи‑пи! Слышите? Это сигнал бедствия из далёкого космоса! Командир Орбита срочно вызывает экипаж.',
+  beats:['Первая деталь маяка найдена — блестящая шестерёнка!','Зюзяне машут вам тремя руками. Они рады, что вы прилетели!','Найдена антенна от маяка. Теперь сигнал будет слышен дальше!','На планете Зюзя дует фиолетовый ветер. Держитесь крепче!','Ещё одна деталь — светящаяся лампочка. Маяк начинает мигать!','Зюзяне поют песню на своём языке: «Зю‑зю‑зю!» Это значит «спасибо».','Почти все детали собраны. Глитч прячет последние!'],
+  last:'Последняя деталь! Соберите её — и маяк снова засияет.',
+  climax:'Маяк загорелся! Его луч указывает туда, где зюзяне оставили подарок для экипажа.',
+  fin:'Маяк планеты Зюзя снова светит! Зюзяне нашли дорогу домой и назвали вас почётными гостями своей планеты. Командир Орбита вами гордится!'},
+ {id:'glitch',t:'Перевоспитать робота Глитча',hook:'Глитч не злой — у него сломалась программа дружбы',
+  letter:'Говорит {leader}! {Villain} спрятал {treasure}. Но я выяснил: Глитч не злой. Метеорит повредил его программу дружбы! В программе {n} строчек кода. Каждое испытание исправит одну строчку. Почините Глитча — и он сам вернёт сокровище!',
+  pro:'Экипаж, внимание! У нас необычное задание: не поймать робота, а помочь ему. Читаем письмо Командира!',
+  beats:['Строчка кода исправлена! Глитч перестал хулиганить и задумался.','Глитч впервые сказал «пожалуйста». Программа работает!','Робот спрятался за спутником. Ему стыдно за свои проделки.','Ещё одна строчка кода! Глитч улыбнулся — у него на экране появился смайлик.','Глитч спросил: «А можно мне тоже поиграть с вами?»','Программа дружбы загружена почти полностью!','Глитч машет вам манипулятором. Кажется, он хочет что‑то сказать.'],
+  last:'Последняя строчка кода! Исправьте её — и Глитч станет вашим другом.',
+  climax:'Программа дружбы загружена на 100%! Глитч говорит: «Спасибо, друзья! Я спрятал сокровище вот здесь…»',
+  fin:'Вы не просто нашли сокровище — вы подружились с роботом! Глитч обещает больше не хулиганить. Командир Орбита говорит: настоящие космонавты умеют помогать даже тем, кто ошибся.'}
+],
+ny:[
+ {id:'meshok',t:'Спасти Новый год!',hook:'{Villain} заморозила часы и спрятала мешок с подарками',letter:null,
+  pro:'Ой, по окну постучали… Смотрите, снежинка принесла письмо! Кажется, его прислал сам Дед Мороз.',
+  beats:['Вы чувствуете холод? Это Вредная Вьюга где‑то рядом!','Звенят бубенчики — значит, мы на верном пути.','Снеговик показывает морковкой в сторону следующей подсказки.','Вьюга засыпала дорогу снегом. Расчищаем путь!','На ёлке зажглась ещё одна лампочка. Новый год всё ближе!','Часы Деда Мороза начинают оттаивать. Тик‑так!','Вьюга злится: её чары слабеют от вашей дружбы.'],
+  last:'Последнее волшебное испытание! После него часы оттают, и праздник наступит.',
+  climax:'Часы пробили! Слышите, как звенят колокольчики? Мешок с подарками где‑то здесь!',
+  fin:'Новый год спасён! Дед Мороз благодарит своих главных помощников. Без вас праздник бы не наступил!'},
+ {id:'oleni',t:'Пропавшие олени',hook:'Вьюга разогнала оленей Деда Мороза — без них сани не полетят',
+  letter:'Пишет вам {leader}. {Villain} напугала моих оленей, и они разбежались! Без оленей сани не полетят, и подарки не попадут к детям. Пройдите {n} испытаний — каждое поможет найти одного оленя. А когда упряжка соберётся, я оставлю вам {treasure}.',
+  pro:'Ребята, тише… Слышите звон колокольчика? Это олень Деда Мороза! Он принёс нам письмо.',
+  beats:['Нашёлся олень Рудольф! Его красный нос светится ярко‑ярко.','На снегу видны следы копыт. Олени где‑то рядом!','Олень Комета прятался за ёлкой. Теперь он в упряжке!','Олени любят морковку и смелых ребят. Ещё один вернулся!','Вьюга дует сильнее, но олени уже не боятся — вы рядом.','Упряжка почти собрана! Сани готовы к полёту.','Последние олени услышали ваши голоса и бегут сюда.'],
+  last:'Остался последний олень! Найдите его — и сани полетят.',
+  climax:'Все олени на месте! Сани взлетают — а из мешка выпал подарок прямо для вас. Ищите!',
+  fin:'Олени вернулись, сани летят, а подарки едут к детям по всему свету! Дед Мороз говорит: такой дружной команды у него ещё не было.'},
+ {id:'zvezda',t:'Звезда для главной ёлки',hook:'Вьюга погасила звезду на главной ёлке',
+  letter:'Пишет вам {leader}. {Villain} погасила волшебную звезду на главной ёлке! Без неё огоньки не зажгутся. Звезда рассыпалась на {n} искорок. Пройдите испытания и соберите их все! Когда звезда засияет, вы найдёте {treasure}.',
+  pro:'Посмотрите, как темно стало на ёлке… Ой, а вот и письмо от Деда Мороза. Он знает, что случилось!',
+  beats:['Первая искорка найдена! Она тёплая и сияет золотом.','Искорка подмигнула вам — значит, следующая уже близко.','Вьюга пытается задуть искорки, но вы их бережёте!','Ещё одна искорка! Ёлка стала чуть‑чуть светлее.','Снежинки шепчут: «Молодцы! Звезда скоро засияет!»','Искорок всё больше. Ёлка оживает!','Вьюга устала и присела отдохнуть. Самое время найти последние искорки!'],
+  last:'Последняя искорка! Соберите её — и звезда снова засияет.',
+  climax:'Звезда засияла! Её свет указывает туда, где спрятан подарок. Ищите!',
+  fin:'Звезда снова горит на главной ёлке, и праздник наступил! Дед Мороз дарит вам звание хранителей новогоднего волшебства.'}
+],
+det:[
+ {id:'sladosti',t:'Дело о пропавших сладостях',hook:'{Villain} утащил коробку со сладостями — нужны улики',letter:null,
+  pro:'Внимание, сыщики! В агентство пришло срочное дело. Инспектор Лупа просит лучших детективов о помощи.',
+  beats:['Найдена первая улика: клочок рыжей шерсти. Подозреваемый — кот!','На полу отпечатки лапок. Они ведут дальше…','Свидетель видел, как кто‑то пушистый крался с коробкой.','Улика номер четыре: фантик от конфеты. Мурлок явно проголодался!','Мурлок оставил записку: «Не найдёте!» Сыщики не сдаются.','Отпечатки становятся свежее. Подозреваемый близко!','Инспектор Лупа шепчет: «Дело почти раскрыто!»'],
+  last:'Последняя улика! Найдите её — и дело будет раскрыто.',
+  climax:'Все улики сходятся в одной точке. Коробка со сладостями спрятана здесь!',
+  fin:'Дело раскрыто! Инспектор Лупа вручает вам значки лучших сыщиков. А кот Мурлок обещал больше не таскать сладости.'},
+ {id:'zapiski',t:'Шифровки кота Мурлока',hook:'Мурлок шлёт загадочные записки — пора их расшифровать',
+  letter:'Пишет {leader}. Хитрый кот Мурлок прислал в агентство странные записки и спрятал {treasure}. Он уверен, что никто не сможет его вычислить! Пройдите {n} испытаний: каждое раскроет одну шифровку. Разгадайте их все — и вы узнаете, где тайник.',
+  pro:'Сыщики, к нам подбросили конверт! На нём следы лап и надпись «Секретно». Откроем?',
+  beats:['Шифровка номер один раскрыта! В ней сказано: «Ищите там, где тепло».','Мурлок подписывается отпечатком лапы. Очень самоуверенный кот!','Новая шифровка лежала в самом неожиданном месте.','Инспектор Лупа достал увеличительное стекло: «Ага! Здесь что‑то есть!»','Мурлок начинает путаться в собственных шифрах.','Шифровки складываются в слово. Осталось чуть‑чуть!','Мурлок мяукнул где‑то рядом. Он подслушивает!'],
+  last:'Последняя шифровка! В ней — адрес тайника.',
+  climax:'Все шифровки разгаданы! Тайник Мурлока прямо перед вами.',
+  fin:'Вы разгадали все шифровки и перехитрили самого хитрого кота! Инспектор Лупа принимает вас в агентство лучших сыщиков.'}
+],
+mag:[
+ {id:'kniga',t:'Тайна волшебной книги',hook:'{Villain} заколдовала и спрятала волшебную книгу',letter:null,
+  pro:'Внимание, юные волшебники! Сова принесла письмо из Школы волшебства. Читаем!',
+  beats:['Волшебная палочка засветилась — магия рядом!','Колдунья Ворчалка оставила на пути заклинание‑путаницу. Будьте внимательны!','Страница из волшебной книги найдена! На ней светятся буквы.','Филин Профессора Звездочёта ухнул: «Верной дорогой идёте!»','Ворчалка ворчит: её чары слабеют.','Книга зовёт вас — слышен шелест её страниц.','Осталось расколдовать последний замок.'],
+  last:'Последнее испытание! Скажите волшебное слово — и книга откроется.',
+  climax:'Заклятие снято! Волшебная книга ждёт вас вот здесь…',
+  fin:'Вы расколдовали волшебную книгу! Профессор Звездочёт объявляет вас настоящими волшебниками. Ворчалка даже перестала ворчать.'},
+ {id:'ekzamen',t:'Экзамен на звание волшебника',hook:'Каждое испытание — урок в Школе волшебства',
+  letter:'Пишет вам {leader}, директор Школы волшебства. Пришло время экзамена на звание волшебника! Вас ждут {n} уроков: зельеварение, полёты, заклинания и другие. А колдунья {villain} уже спрятала {treasure} и хочет помешать экзамену. Сдайте все уроки — и вы получите волшебные дипломы!',
+  pro:'Звенит волшебный колокольчик — начинается экзамен! Директор школы прислал письмо.',
+  beats:['Урок зельеварения сдан! Котёл забулькал зелёными пузырями.','На уроке полётов метла чуть не улетела без вас!','Урок заклинаний: главное — говорить чётко и с улыбкой.','Совы приносят отметки: у вас «отлично»!','Ворчалка заглянула в класс и проворчала: «Хм, неплохо…»','Урок превращений! Будьте осторожны — не превратитесь в лягушек.','До диплома остался всего один урок!'],
+  last:'Последний экзамен! Сдайте его — и диплом волшебника ваш.',
+  climax:'Все уроки сданы! Волшебная книга с наградами спрятана где‑то в школе…',
+  fin:'Экзамен сдан на «отлично»! Профессор Звездочёт вручает вам дипломы настоящих волшебников. Теперь вы можете колдовать на любом празднике!'}
+],
+dino:[
+ {id:'yaico',t:'Тайна затерянной долины',hook:'Птеродактиль унёс драгоценное яйцо в долину динозавров',letter:null,
+  pro:'Экспедиция, внимание! Профессор Кость прислал письмо из затерянной долины.',
+  beats:['Вы вошли в долину. Земля дрожит — где‑то рядом прошёл динозавр!','Найден огромный след. Это трицератопс, он не опасен.','Птеродактиль кружит над головой и громко ворчит.','В кустах блестит что‑то… Это осколок скорлупы. Яйцо где‑то рядом!','Детёныш динозавра пищит: он хочет к маме.','Профессор Кость сверяется с картой: «Нам туда!»','Птеродактиль устал ворчать и уселся на скалу.'],
+  last:'Последнее испытание экспедиции! Гнездо уже совсем близко.',
+  climax:'Тише… Вот оно, гнездо с драгоценным яйцом! Осторожно, ищите!',
+  fin:'Экспедиция удалась! Вы нашли драгоценное яйцо, и скоро из него вылупится малыш‑динозавр. Профессор Кость называет вас лучшими палеонтологами!'},
+ {id:'vulkan',t:'Проснувшийся вулкан',hook:'Вулкан просыпается — нужно успеть спасти яйцо',
+  letter:'Пишет вам {leader}. В затерянной долине просыпается вулкан! {Villain} утащил {treasure} прямо к его подножию. Пройдите {n} испытаний, пока вулкан не проснулся окончательно, и спасите яйцо!',
+  pro:'Слышите, как гудит земля? Это просыпается вулкан! Профессор Кость срочно зовёт экспедицию.',
+  beats:['Вулкан пыхтит дымом. Нужно спешить!','Динозавры убегают от вулкана, а вы идёте вперёд — смело!','Путь перегородила лава. Ищем обходную тропу!','Профессор Кость измерил температуру: ещё есть время.','Птеродактиль испугался вулкана и стал вам помогать.','Земля дрожит сильнее. Вперёд, экспедиция!','Вы у самого подножия. Гнездо где‑то рядом!'],
+  last:'Последнее испытание! Успейте до того, как вулкан проснётся.',
+  climax:'Вулкан затих! Вы успели — гнездо с яйцом прямо перед вами.',
+  fin:'Вы спасли драгоценное яйцо от вулкана! Профессор Кость говорит, что такой смелой экспедиции долина ещё не видела.'}
+],
+hero:[
+ {id:'gorod',t:'Город в опасности!',hook:'Доктор Хаос захватил город — нужна команда героев',letter:null,
+  pro:'Тревога! Тревога! В штаб героев пришло срочное сообщение от Капитана Молнии.',
+  beats:['Сигнал тревоги! Герои, на старт!','Доктор Хаос включил свою машину хаоса. Остановим её!','Жители города машут вам из окон: «Мы верим в вас!»','Хаос оставил ловушку, но герои её заметили.','Капитан Молния передаёт по рации: «Отличная работа, команда!»','Ещё один район города спасён!','Доктор Хаос нервничает: его план рушится.'],
+  last:'Финальная битва! Победите Доктора Хаоса в последнем испытании.',
+  climax:'Машина хаоса остановлена! Кристалл силы где‑то здесь…',
+  fin:'Город спасён! Капитан Молния принимает вас в команду героев. Доктор Хаос обещает исправиться.'},
+ {id:'akademia',t:'Академия героев',hook:'Испытания на суперсилы для новых героев',
+  letter:'Пишет {leader}, директор Академии героев. Пора проверить ваши суперсилы! Вас ждут {n} испытаний: на скорость, ловкость, смекалку и дружбу. Но {villain} пробрался в академию и спрятал {treasure}. Пройдите все испытания, найдите кристалл — и станете настоящими героями!',
+  pro:'Внимание, кадеты! Сегодня в Академии героев важный день — испытание суперсил.',
+  beats:['Суперсила «Скорость» проверена! Вы быстрее ветра.','Испытание на смекалку: настоящий герой сначала думает, потом действует.','Суперсила «Дружба» — самая важная! Помогайте друг другу.','Капитан Молния ставит вам пятёрку!','Доктор Хаос подглядывает из‑за угла. Покажем ему, на что способны герои!','Суперсила «Ловкость» проверена. Отлично!','Осталось последнее испытание академии.'],
+  last:'Последнее испытание! Покажите все свои суперсилы сразу.',
+  climax:'Все суперсилы проверены! Кристалл силы ждёт своих героев.',
+  fin:'Вы окончили Академию героев! Капитан Молния вручает вам звание настоящих супергероев.'}
+]};
+Q.storyOf=function(p){ var a=Q.STORIES[p.theme]||[]; for(var i=0;i<a.length;i++) if(a[i].id===p.story) return a[i]; return a[0]||null; };
+Q.firstSent=function(s){ var m=String(s).match(/^.+?[.!?…](\s|$)/); return m?m[0].trim():s; };
+
 </script>
 
 <script>
@@ -1183,7 +1359,7 @@ $('proBadge').onclick=function(){ if(TEST){ simFree=!simFree; initPro(); toast(s
 function needPro(){ return false; } // выбор платных опций разрешён, оплата спрашивается при сборке квеста
 
 var PAYP=null, PAYT='pass';
-function openTariffs(p,reason){
+function openTariffs(p,reason){ goal('tariffs_open');
   PAYP=p||null;
   if(!PAYP || PAYT==='one' && !PAYP) PAYT=PAYP?'one':'pass';
   if(PAYP) PAYT='one';
@@ -1302,7 +1478,7 @@ function applyProfile(p){
   saveLics(); initPro(); drawAccBtn();
 }
 function drawAccBtn(){ $('accBtn').textContent=PROF?'👤 '+(PROF.email||PROF.tg||'Профиль'):'👤 Войти'; }
-function loginDone(d){ TOK=d.token; store('xpq_tok',TOK); applyProfile(d.profile); drawAcc(); var n=(d.profile.keys||[]).filter(function(k){return k.exp>now();}).length; toast(n?'Вы вошли. Ключей: '+n+' ⭐':'Вы вошли'); }
+function loginDone(d){ TOK=d.token; store('xpq_tok',TOK); applyProfile(d.profile); drawAcc(); syncQuests(); goal('login'); var n=(d.profile.keys||[]).filter(function(k){return k.exp>now();}).length; toast(n?'Вы вошли. Ключей: '+n+' ⭐':'Вы вошли'); }
 function tgWidget(box){
   if(!CONFIG.TG_BOT){ box.innerHTML=''; return; }
   box.innerHTML='';
@@ -1396,7 +1572,7 @@ function tgLink(){
 }
 function loadProfile(){
   if(TEST||!TOK) return;
-  api('me',{token:TOK}).then(function(d){ applyProfile(d.profile); }).catch(function(e){ if(e.status===401){ TOK=''; store('xpq_tok',''); } });
+  api('me',{token:TOK}).then(function(d){ applyProfile(d.profile); syncQuests(); }).catch(function(e){ if(e.status===401){ TOK=''; store('xpq_tok',''); } });
 }
 
 
@@ -1489,38 +1665,64 @@ function params(seed){
   var one=S.kids===1;
   return {theme:S.theme,name:$('fName').value.trim(),
     young:one?+$('fAge').value:+$('fYoung').value, old:one?+$('fAge').value:+$('fOld').value,
-    kids:S.kids,fmt:S.kids>1?S.fmt:'team',place:S.place,dur:S.dur,mode:S.mode,props:S.props.slice(),seed:seed||Math.floor(Math.random()*1e9)};
+    kids:S.kids,fmt:S.kids>1?S.fmt:'team',place:S.place,dur:S.dur,mode:S.mode,props:S.props.slice(),story:(Q.STORIES[S.theme]||[{}])[0].id,seed:seed||Math.floor(Math.random()*1e9)};
 }
 
 /* ---------- результат ---------- */
 var QC=null, B=null, tab='script';
 var TABS=['invite','script','cards','letter','cert','remote'];
 var TABN={invite:'Приглашения',script:'Подготовка',cards:'Карточки',letter:'Письмо‑старт',cert:'Сертификат',remote:'На празднике'};
+var STAGE={invite:1,script:1,cards:1,letter:2,cert:2,remote:3};
 var HOW={
   invite:'<b>Шаг 1 из 6. Приглашения гостям.</b> Впишите гостей и детали праздника — получите именные открытки для печати, картинки и текст для мессенджера. Имена гостей сами попадут в сертификат.',
   script:'<b>Шаг 2 из 6. Подготовка.</b> Соберите реквизит по списку и проверьте задания. Не понравилось задание — нажмите «🔄 Другое».',
-  cards:'<b>Шаг 3 из 6. Карточки.</b> Распечатайте и разложите по тайникам из таблицы «Куда спрятать». ',
+  cards:'<b>Шаг 3 из 6. Карточки.</b> Проверьте карточки — над каждым заданием есть строчка сюжета. Когда всё устраивает, сохраните квест и распечатайте. ',
   letter:'<b>Шаг 4 из 6. Письмо‑старт.</b> Это письмо от героя квеста. Распечатайте и торжественно вручите детям в самом начале игры — с него всё начинается.',
   cert:'<b>Шаг 5 из 6. Сертификат.</b> Впишите имена детей и распечатайте — вручите в финале вместе с сокровищем.',
   remote:'<b>Шаг 6 из 6. На празднике.</b> Держите телефон под рукой: здесь задание, ответ, таймер и звуки для каждого испытания.'
 };
-function make(){ var pp=params(); if(needsPro(pp).length && !proFor(pp)){ var ub=LICS.filter(function(l){ return l.tariff==='one' && !l.bind && l.exp>now(); })[0]; if(ub && !TEST){ activateKey(ub.key,keyOf(pp)).then(function(){ make(); }).catch(function(){ openTariffs(pp); }); return; } openTariffs(pp); return; } QC=Q.generate(pp); render(); $('wizard').style.display='none'; $('resultScreen').style.display='block'; tab='invite'; showTab(); saveForm(); }
-$('editBtn').onclick=function(){ $('resultScreen').style.display='none'; $('wizard').style.display='block'; go(2); };
-$('regenBtn').onclick=function(){ QC=Q.generate(params()); render(); showTab(); toast('Готов новый вариант 🎲'); };
+function make(){ var pp=params(); if(needsPro(pp).length && !proFor(pp)){ var ub=LICS.filter(function(l){ return l.tariff==='one' && !l.bind && l.exp>now(); })[0]; if(ub && !TEST){ activateKey(ub.key,keyOf(pp)).then(function(){ make(); }).catch(function(){ openTariffs(pp); }); return; } openTariffs(pp); return; } QC=Q.generate(pp); if(BASE_STORY && (Q.STORIES[QC.params.theme]||[]).some(function(x){return x.id===BASE_STORY;})) QC.params.story=BASE_STORY; BASE_STORY=null;
+  var keep=EDIT_ID && qGet(EDIT_ID) && !qGet(EDIT_ID).saved ? qGet(EDIT_ID) : null;
+  CUR={id:keep?keep.id:newQid(),params:QC.params,taskIds:QC.taskIds.slice(),saved:false,created:keep?keep.created:now(),inv:keep?keep.inv:(BASE_INV||{}),cert:keep?keep.cert:''};
+  EDIT_ID=null; BASE_INV=null; persist(); saveForm(); goal('quest_build');
+  nav('/q/?id='+CUR.id+'&tab=invite'); }
+var CUR=null, EDIT_ID=null, BASE_INV=null, BASE_STORY=null;
+function toWizard(p){ var pp=JSON.parse(JSON.stringify(p)); formRestore({theme:pp.theme,fmt:pp.fmt,kids:pp.kids,place:pp.place,dur:pp.dur,mode:pp.mode,props:pp.props,name:pp.name,age:pp.young,young:pp.young,old:pp.old}); S.theme=pp.theme; }
+$('editBtn').onclick=function(){ if(CUR&&CUR.saved) return; EDIT_ID=CUR?CUR.id:null; BASE_STORY=CUR?CUR.params.story:null; if(CUR) toWizard(CUR.params); history.pushState(null,'','/create/'); showOnly('wizard'); go(2); };
+$('copyBtn').onclick=function(){ if(!CUR) return; BASE_STORY=CUR.params.story; BASE_INV=JSON.parse(JSON.stringify(CUR.inv||{})); toWizard(CUR.params); history.pushState(null,'','/create/'); showOnly('wizard'); go(2); toast('Настройки скопированы — поменяйте что нужно и соберите новый квест'); };
+$('regenBtn').onclick=function(){ if(!CUR||CUR.saved) return; var p=JSON.parse(JSON.stringify(CUR.params)); p.seed=Math.floor(Math.random()*1e9); QC=Q.generate(p); CUR.params=QC.params; CUR.taskIds=QC.taskIds.slice(); persist(); render(); showTab(); toast('Готов новый вариант 🎲'); };
 $$('#rnav button').forEach(function(b){ b.onclick=function(){ tab=b.dataset.t; showTab(); }; });
+function askSave(){ $('saveModal').style.display='flex'; }
+$('saveBtn').onclick=askSave; $('lockSave').onclick=askSave; $('saveNo').onclick=function(){ $('saveModal').style.display='none'; };
+$('saveYes').onclick=function(){ $('saveModal').style.display='none'; CUR.saved=true; CUR.savedAt=now(); persist(); goal('quest_save'); render(); tab='letter'; showTab(); toast(TOK?'Квест сохранён в профиле ✅':'Квест сохранён на этом устройстве ✅'); };
+$('printAllBtn').onclick=function(){
+  var old=$('printAll'); if(old) old.remove();
+  var box=document.createElement('div'); box.id='printAll'; box.className='print-this';
+  ['t-cards','t-letter','t-cert','t-script'].forEach(function(id,k){ var c=$(id).cloneNode(true); c.removeAttribute('id'); c.style.display='block'; if(k) c.classList.add('pbreak'); box.appendChild(c); });
+  $$('.print-this').forEach(function(e){e.classList.remove('print-this');}); box.className='print-this';
+  document.body.appendChild(box); goal('print_all');
+  try{ window.print(); }catch(e){}
+  setTimeout(function(){ box.remove(); },1500);
+};
 $('bPrev').onclick=function(){ var i=TABS.indexOf(tab); if(i>0){ tab=TABS[i-1]; showTab(); } };
-$('bNext').onclick=function(){ var i=TABS.indexOf(tab); if(i<TABS.length-1){ tab=TABS[i+1]; showTab(); } else { $('editBtn').click(); } };
+$('bNext').onclick=function(){ var i=TABS.indexOf(tab); if(!(CUR&&CUR.saved)&&tab==='cards'){ askSave(); return; } if(i<TABS.length-1){ tab=TABS[i+1]; showTab(); } else nav('/my/'); };
 function showTab(){
-  $$('#rnav button').forEach(function(b){ b.classList.toggle('on',b.dataset.t===tab); });
-  TABS.forEach(function(t){ $('t-'+t).style.display=t===tab?'block':'none'; });
+  var saved=!!(CUR&&CUR.saved), locked=!saved&&STAGE[tab]>1;
+  $$('#rnav button').forEach(function(b){ b.classList.toggle('on',b.dataset.t===tab); b.classList.toggle('locked',!saved&&STAGE[b.dataset.t]>1); });
+  TABS.forEach(function(t){ $('t-'+t).style.display=(t===tab&&!locked)?'block':'none'; });
+  $('t-lock').style.display=locked?'block':'none';
+  var sg=STAGE[tab];
+  $('stageBar').innerHTML=[['1','Собрать и проверить'],['2','Распечатать'],['3','Провести праздник']].map(function(x){ var n=+x[0]; return '<span class="'+(n===sg?'on':(saved&&n<sg)||(saved&&n===1)?'done':'')+'">'+(saved&&n===1?'✅ ':'')+'Этап '+n+'. '+x[1]+'</span>'; }).join('');
+  $('printAllBtn').style.display=saved&&STAGE[tab]<3?'':'none';
+  if(CUR && history.replaceState && location.pathname.indexOf('/q/')===0) history.replaceState(null,'','/q/?id='+CUR.id+'&tab='+tab);
   var i=TABS.indexOf(tab);
   $('howto').innerHTML=HOW[tab]+(tab==='cards'&&QC&&QC.params.mode==='qr'?'Нажмите на QR‑код, чтобы увидеть экран, который откроется у детей.':'');
-  $('printBtn').style.display=tab==='remote'?'none':'';
+  $('printBtn').style.display=(tab==='remote'||locked)?'none':'';
   document.querySelector('.bnav').style.position=tab==='remote'?'static':'sticky';
   $('printBtn').textContent='🖨️ Распечатать: '+TABN[tab].toLowerCase();
   $('bPrev').style.visibility=i===0?'hidden':'visible';
   $('bPrev').textContent=i>0?'← '+TABN[TABS[i-1]]:'';
-  $('bNext').textContent=i<TABS.length-1?'Дальше: '+TABN[TABS[i+1]]+' →':'⚙️ Новый квест';
+  $('bNext').textContent=(!saved&&tab==='cards')?'✅ Сохранить квест':(i<TABS.length-1?'Дальше: '+TABN[TABS[i+1]]+' →':'📚 Мои квесты');
   window.scrollTo({top:0,behavior:'smooth'});
 }
 $('printBtn').onclick=function(){
@@ -1542,8 +1744,18 @@ function render(){
   var p=QC.params;
   B=Q.build(QC); var th=B.theme; applyTheme(th);
   var ST=B.stations, mins=ST.length*5;
+  var SY=Q.storyOf(p), small=p.old<=6, saved=!!(CUR&&CUR.saved);
+  var fillS=function(x){ return Q.fill(x||'',th,{n:ST.length,placeIn:Q.PLACES[p.place].in}); };
+  ST.forEach(function(s,k){ var raw=SY?(s.last?SY.last:SY.beats[k%SY.beats.length]):''; s.beat=fillS(small?Q.firstSent(raw):raw); });
+  $('editBtn').style.display=saved?'none':''; $('regenBtn').style.display=saved?'none':''; $('saveBtn').style.display=saved?'none':''; $('copyBtn').style.display=saved?'':'none';
+  $('savedBar').style.display=saved?'flex':'none';
+  if(saved) $('savedBar').innerHTML='✅ <b>Квест сохранён</b> '+fmtD(CUR.savedAt||CUR.created)+'. Задания и тайники зафиксированы — имена, дату и тексты можно менять. '+(TOK?'Он есть в «Моих квестах» на любом устройстве.':'<a href="#" id="svLogin">Войдите</a>, чтобы он был доступен с любого устройства.');
+  if($('svLogin')) $('svLogin').onclick=function(e){ e.preventDefault(); $('accBtn').click(); };
+  var stories=Q.STORIES[p.theme]||[];
+  $('storyBox').innerHTML=!SY?'':saved?'<div class="note">📖 Сюжет: <b>'+esc(SY.t)+'</b> — '+esc(fillS(SY.hook))+'</div>':'<div class="lbl">📖 Выберите сюжет</div><div class="schips">'+stories.map(function(x){ return '<button type="button" class="schip'+(x.id===SY.id?' on':'')+'" data-story="'+x.id+'"><b>'+esc(x.t)+'</b><span>'+esc(fillS(x.hook))+'</span></button>'; }).join('')+'</div>';
+  $$('[data-story]').forEach(function(b){ b.onclick=function(){ QC.params.story=CUR.params.story=b.dataset.story; persist(); render(); showTab(); toast('Сюжет: '+b.querySelector('b').textContent); }; });
   var ages=p.young===p.old?p.young+' '+(p.young<5?'года':'лет'):p.young+'–'+p.old+' лет';
-  $('rE').textContent=th.e; $('rTitle').textContent=th.title;
+  $('rE').textContent=th.e; $('rTitle').textContent=SY?SY.t:th.title;
   $('rStats').innerHTML='<span>'+ST.length+' испытаний</span><span>≈ '+mins+'–'+(mins+15)+' мин</span><span>'+ages+'</span>'+(p.kids>1?'<span>'+Q.FORMATS[p.fmt||'team'].e+' '+Q.FORMATS[p.fmt||'team'].l.toLowerCase()+'</span>':'')+'<span>'+p.kids+' '+(p.kids===1?'ребёнок':p.kids<5?'ребёнка':'детей')+'</span><span>'+Q.PLACES[p.place].e+' '+Q.PLACES[p.place].l.toLowerCase()+'</span><span>'+(p.mode==='qr'?'📱 QR':'📄 бумажный')+'</span>';
 
   /* подготовка */
@@ -1560,10 +1772,12 @@ function render(){
   h+='</ul><h3 class="sec">📍 Куда спрятать</h3><table class="hide"><tr><th>Что</th><th>Куда</th></tr><tr><td>✉️ Письмо‑приглашение</td><td>Вручите в начале праздника</td></tr>';
   ST.forEach(function(s){ h+='<tr><td>🃏 Карточка '+s.i+' — '+esc(s.title)+'</td><td>'+s.here.e+' '+esc(s.here.n)+'</td></tr>'; });
   h+='<tr><td>🎁 <b>Сокровище</b></td><td>'+B.treasureLoc.e+' '+esc(B.treasureLoc.n)+'</td></tr></table>';
+  if(SY) h+='<h3 class="sec">🎭 Начало праздника</h3><div class="st"><dl><dt>Скажите детям</dt><dd><i>«'+esc(fillS(SY.pro))+'»</i></dd><dt>Затем</dt><dd>Вручите письмо‑старт и жетоны. Пусть '+(p.kids===1?'ребёнок прочитает':'кто‑то из детей прочитает')+' письмо вслух — или прочитайте сами с выражением.</dd></dl></div>';
   h+='<h3 class="sec">🎬 Ход квеста</h3><div class="rules"><h4>🛟 Если что‑то не получается</h4>Главное правило: <b>квест нельзя проиграть</b> — до сокровища '+(p.kids===1?'ребёнок дойдёт':'дойдут все')+'.<ul><li><b>Лестница попыток:</b> не вышло с первого раза — дайте попытку 2 (проще), потом попытку 3 (ещё проще и с вашей помощью). Не вышло и тогда — <b>откуп</b>: весёлое мини‑задание, которое провалить нельзя.</li><li><b>Жетоны:</b> у '+(p.kids===1?'ребёнка':'детей')+' '+th.tok.three+' '+th.tok.e+'. Жетон можно отдать вам в любой момент — и сразу получить подсказку или кодовое слово. За каждый сбережённый жетон в финале — бонус из сундука.</li>'+(p.kids>1&&p.fmt==='team'?'<li>Задание засчитывается, если справился хотя бы один. Никто не выбывает.</li>':'')+(p.fmt==='teams'?'<li><b>Две команды:</b> разделите детей поровну, пусть придумают названия. Обе команды идут по одному маршруту; за каждое испытание быстрая команда получает бонусную звезду (отмечайте на «Пульте»). Жетоны — у каждой команды свои. В финале победитель получает титул, а сокровище делят все.</li>':'')+(p.fmt==='solo'?'<li><b>Каждый сам за себя:</b> испытания выполняют по очереди, звёзды — лично (табло на «Пульте»). Жетоны — общие на всех, помогайте друг другу. В финале — титулы «самый быстрый», «самый смекалистый», «самый смешной», а призы — всем.</li>':'')+'<li>С малышами 4–5 лет помогайте уже со второй попытки. На «Пульте» кнопки «Не вышло» и «Жетон» подскажут, что делать.</li></ul></div><div class="st"><div class="st-h"><span class="st-n">0</span><span class="st-t">Старт</span></div><dl><dt>Что делать</dt><dd>'+(p.kids===1?'Позовите именинника, вручите письмо и прочитайте вслух':'Соберите детей, вручите письмо и прочитайте вслух')+'. В конце письма — загадка, где лежит первая карточка.</dd></dl></div>';
   ST.forEach(function(s,idx){
     var t=s.task;
     h+='<div class="st"><div class="st-h"><span class="st-n">'+s.i+'</span><span class="st-t">'+esc(s.title)+'</span><span class="st-tags"><span>'+(p.kids===1&&t.type==='team'?'игровое':TYPE_RU[t.type])+'</span><span>'+(t.n==='a'?'активное':'спокойное')+'</span><span>для '+t.a[0]+'–'+t.a[1]+' лет ✓</span></span><button class="btn sm ghost no-print" data-swap="'+idx+'">🔄 Другое</button></div><dl>';
+    if(s.beat) h+='<dt>Скажите детям</dt><dd><i>«'+esc(s.beat)+'»</i></dd>';
     h+='<dt>Где лежит</dt><dd>'+s.here.e+' '+esc(s.here.n)+'</dd><dt>Задание</dt><dd>'+esc(s.kid).replace(/\n/g,'<br>')+'</dd>';
     if(s.prep) h+='<dt>Подготовить</dt><dd>'+esc(s.prep)+'</dd>';
     if(s.run) h+='<dt>Как провести</dt><dd>'+esc(s.run)+'</dd>';
@@ -1574,16 +1788,16 @@ function render(){
     h+='<dt>Если не получается</dt><dd>'+ladderHTML(s,-1)+'</dd>';
     h+='<dt>Ведёт дальше</dt><dd>'+(s.last?'🎁 к сокровищу — ':'')+s.next.e+' '+esc(s.next.n)+'</dd></dl></div>';
   });
-  h+='<div class="st"><div class="st-h"><span class="st-n">🎁</span><span class="st-t">Финал</span></div><dl><dt>Что делать</dt><dd>'+(p.kids===1?'Ребёнок находит ':'Дети находят ')+esc(th.treasure)+'. Включите «Фанфары» на пульте, '+(p.kids===1?'вручите сертификат и сделайте фото с сокровищем':'вручите сертификаты, сделайте общее фото')+'.</dd></dl></div>';
+  h+='<div class="st"><div class="st-h"><span class="st-n">🎁</span><span class="st-t">Финал</span></div><dl>'+(SY?'<dt>Перед сокровищем</dt><dd><i>«'+esc(fillS(SY.climax))+'»</i></dd><dt>Финальная речь</dt><dd><i>«'+esc(fillS(SY.fin))+'»</i></dd>':'')+'<dt>Что делать</dt><dd>'+(p.kids===1?'Ребёнок находит ':'Дети находят ')+esc(th.treasure)+'. Включите «Фанфары» на пульте, '+(p.kids===1?'вручите сертификат и сделайте фото с сокровищем':'вручите сертификаты, сделайте общее фото')+'.</dd></dl></div>';
   h+='<div class="warn">⚠️ <b>Безопасность.</b> Не прячьте подсказки высоко, у плиты, розеток и лекарств. Для малышей — без мелких предметов. '+(p.place==='flat'||p.place==='yard'?'Холодильник и стиральную машину открывать при взрослом.':'Предупредите воспитателя, учителя или тренера и проверьте тайники заранее — дети не должны залезать на шкафы и подоконники.')+'</div>';
   $('t-script').innerHTML=h;
-  $$('[data-swap]').forEach(function(b){ b.onclick=function(){ if(Q.swapTask(QC,+b.dataset.swap)){ render(); toast('Задание заменено'); } else toast('Нет подходящей замены — отметьте больше предметов'); }; });
+  $$('[data-swap]').forEach(function(b){ b.onclick=function(){ if(Q.swapTask(QC,+b.dataset.swap)){ CUR.taskIds=QC.taskIds.slice(); persist(); render(); toast('Задание заменено'); } else toast('Нет подходящей замены — отметьте больше предметов'); }; });
 
   /* карточки */
   var c='<div class="cards">';
   ST.forEach(function(s){
     c+='<div class="card th-'+th.id+(GEN(th)?' th-gen':'')+'"><div class="deco-top">'+(GEN(th)?strip(th):'')+'</div><div class="wm">'+th.wm+'</div><div class="ch"><span>'+th.e+' '+esc(th.stationWord)+'</span><span>'+s.i+' из '+s.n+'</span></div>';
-    c+='<div class="ct">'+esc(s.title)+'</div><div class="ck">'+esc(s.kid)+'</div>';
+    c+=(s.beat?'<div class="cbeat">'+esc(s.beat)+'</div>':'')+'<div class="ct">'+esc(s.title)+'</div><div class="ck">'+esc(s.kid)+'</div>';
     if(s.task.puzzle) c+='<div class="puzzle">'+puzzleHTML(Q.puzzle(s.task.puzzle,s.code,QC.seed+s.i))+'</div>';
     if(p.mode==='qr') c+='<div class="qr"><div class="qbox" data-qr="'+esc(Q.encodePlayer(th.id,s,p.young,p.kids,QC.seed))+'"></div><div><b>Прошли испытание?</b><br>Сканируйте код и введите '+(s.isRiddle?'ответ':s.task.type==='cipher'?'разгаданное слово':'кодовое слово')+' — откроется место следующей подсказки!</div></div>';
     else c+='<div class="fold"><div class="foldline">✂ загните по линии · открыть, только когда испытание пройдено!</div><div class="next"><div class="ne">'+s.next.e+'</div><div><div class="nl">'+(s.last?'🎁 Сокровище ждёт здесь':'Следующая подсказка')+'</div><div class="nr">'+esc(s.next.r)+'</div></div></div></div>';
@@ -1599,21 +1813,21 @@ function render(){
   drawQR();
 
   /* письмо */
-  var L='<div class="letter th-'+th.id+(GEN(th)?' th-gen':'')+'">'+(GEN(th)?'<div style="position:absolute;left:0;right:0;top:10px">'+strip(th)+'</div>':'')+(th.id==='ny'?'<div class="deco-top" style="position:absolute;left:0;right:0;top:0;height:34px;background-image:var(--garland);background-size:auto 34px;background-repeat:repeat-x"></div>':'')+'<div style="font-size:50px;text-align:center">'+th.e+'</div><div class="lh">'+esc(whoGreet(th,p))+'</div><p>'+esc(Q.fill(th.letter,th,{n:ST.length,placeIn:Q.PLACES[p.place].in}))+'</p><p>'+(p.name&&p.kids>1?esc(p.name)+', это':'Это')+' ваш шанс стать героями! Начинайте прямо сейчас.</p><div class="sig">'+esc(th.leader)+'</div>';
+  var L='<div class="letter th-'+th.id+(GEN(th)?' th-gen':'')+'">'+(GEN(th)?'<div style="position:absolute;left:0;right:0;top:10px">'+strip(th)+'</div>':'')+(th.id==='ny'?'<div class="deco-top" style="position:absolute;left:0;right:0;top:0;height:34px;background-image:var(--garland);background-size:auto 34px;background-repeat:repeat-x"></div>':'')+'<div style="font-size:50px;text-align:center">'+th.e+'</div><div class="lh">'+esc(whoGreet(th,p))+'</div><p>'+esc(fillS(SY&&SY.letter?SY.letter:th.letter))+'</p><p>'+(p.name&&p.kids>1?esc(p.name)+', это':'Это')+' ваш шанс стать героями! Начинайте прямо сейчас.</p><div class="sig">'+esc(th.leader)+'</div>';
   L=L.replace('<div class="sig">',(p.fmt==='teams'?'<p>Вас ждёт состязание! Разделитесь на две команды: обе пойдут по одному следу, а за каждое испытание быстрая команда получит бонусную звезду. Но помните — сокровище достанется всем, кто дойдёт до конца!</p>':p.fmt==='solo'?'<p>Каждый проходит испытания сам и собирает свои звёзды. Посмотрим, кто станет самым быстрым и смекалистым!</p>':'')+'<p>'+(p.kids===1?'Держи':'Держите')+' '+(p.fmt==='teams'?th.tok.three+' на каждую команду':th.tok.three)+' '+th.tok.e+'. Если испытание не получается, '+(p.kids===1?'отдай':'отдайте')+' один ведущему — и он поможет. А за каждый сбережённый в конце ждёт сюрприз!</p><div class="sig">');
   L+='<div class="first"><div class="ne">'+B.firstLoc.e+'</div><div><div style="font-weight:700;color:var(--main);text-transform:uppercase;font-size:13px;letter-spacing:1px">Первая подсказка</div><div style="font-size:20px;font-style:italic">'+esc(B.firstLoc.r)+'</div></div></div></div>';
   $('t-letter').innerHTML=L;
 
   /* сертификат */
-  $('t-cert').innerHTML='<label class="lbl no-print" for="certNames">Имена детей для сертификата</label><textarea class="no-print" id="certNames" placeholder="Мила, Тимур, Аня, Лёва…" style="margin-bottom:12px">'+esc(store('xpq_names')||certDefault(p))+'</textarea><div id="certBox"></div>';
+  $('t-cert').innerHTML='<label class="lbl no-print" for="certNames">Имена детей для сертификата</label><textarea class="no-print" id="certNames" placeholder="Мила, Тимур, Аня, Лёва…" style="margin-bottom:12px">'+esc((CUR&&CUR.cert)||certDefault(p))+'</textarea><div id="certBox"></div>';
   var drawCert=function(){
-    var names=$('certNames').value.trim(); store('xpq_names',names);
+    var names=$('certNames').value.trim(); if(CUR&&CUR.cert!==names){ CUR.cert=names; persistSoon(); }
     var cn=th.corners, pos=['top:14px;left:18px','top:14px;right:18px','bottom:14px;left:18px','bottom:14px;right:18px'];
     var corners=th.id==='ny'?'':cn.map(function(e,i){return '<div class="corner" style="'+pos[i]+'">'+e+'</div>';}).join('');
     if(th.id==='ny') corners='<div class="stripT"></div><div class="corner" style="bottom:14px;left:18px">🎄</div><div class="corner" style="bottom:14px;right:18px">🎁</div>';
     $('certBox').innerHTML='<div class="cert th-'+th.id+'">'+corners+'<div class="ce">🏅</div><h2>СЕРТИФИКАТ</h2><div class="role">'+esc(th.certRole)+'</div><div>вручается</div><div class="names">'+(names?esc(names):'________________________')+'</div><div class="why">за смелость, смекалку и '+(p.kids>1?'командный дух':'находчивость')+'<br>в квесте «'+esc(th.title)+'»</div><div class="sig">'+esc(th.leader)+' '+th.e+'</div><div class="site">'+esc(brand())+'</div></div>';
   };
-  $('certNames').oninput=drawCert; $('certNames').onkeydown=function(){ certTouched=true; }; drawCert();
+  $('certNames').oninput=drawCert; $('certNames').onkeydown=function(){ certTouched=true; }; certTouched=!!(CUR&&CUR.cert); drawCert();
 
   renderInvite();
   rIdx=0; resetRemote(); initSB(); renderRemote();
@@ -1629,7 +1843,7 @@ function puzzleHTML(z){
 }
 function drawQR(){
   $$('[data-qr]').forEach(function(el){
-    var url=location.href.split('#')[0]+'#'+el.dataset.qr;
+    var url=(location.protocol==='file:'?location.href.split('#')[0]:location.origin+'/')+'#'+el.dataset.qr;
     el.innerHTML='';
     if(window.QRCode){ try{ new QRCode(el,{text:url,width:220,height:220,correctLevel:QRCode.CorrectLevel.M}); }catch(e){ el.textContent='QR'; } }
     else el.innerHTML='<div style="font-size:10px;line-height:1.2;width:110px;word-break:break-all">'+esc(url)+'</div>';
@@ -1641,7 +1855,7 @@ function drawQR(){
 
 /* ---------- приглашения гостям ---------- */
 var INV={}, certTouched=false;
-try{ INV=JSON.parse(store('xpq_inv')||'{}')||{}; }catch(e){ INV={}; }
+
 function dressFor(th){ var m=INV.dressBy||{}; return m[th.id]!==undefined?m[th.id]:th.dress; }
 function guests(){ return String(INV.guests||'').split(/[\n,;]+/).map(function(x){return x.trim();}).filter(Boolean); }
 function certDefault(p){ var g=guests(); if(p.name && g.indexOf(p.name)<0) g.unshift(p.name); return g.join(', '); }
@@ -1662,6 +1876,7 @@ function invText(th,d){ return th.e+' '+d.name+', '+d.lead.charAt(0).toLowerCase
 function renderInvite(){
   var p=QC.params, th=B.theme;
   var f='<div class="invform no-print">';
+  f+='<div><label class="lbl" for="iName">'+(p.kids===1?'Имя ребёнка':'Имя именинника или главного героя')+'</label><input type="text" id="iName" value="'+esc(p.name||'')+'" placeholder="Мила"></div>';
   f+='<div class="full"><label class="lbl" for="iGuests">Имена гостей <span class="note">(через запятую или с новой строки)</span></label><textarea id="iGuests" placeholder="Тимур, Аня, Лёва, Соня">'+esc(INV.guests||'')+'</textarea></div>';
   f+='<div><label class="lbl" for="iOcc">Повод</label><select id="iOcc"><option value="bday">День рождения</option><option value="ny">Новый год</option><option value="any">Другой праздник</option></select></div>';
   f+='<div class="row2" style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div><label class="lbl" for="iDate">Дата</label><input type="date" id="iDate" value="'+esc(INV.date||'')+'"></div><div><label class="lbl" for="iTime">Время</label><input type="time" id="iTime" value="'+esc(INV.time||'')+'"></div></div>';
@@ -1673,8 +1888,9 @@ function renderInvite(){
   $('iOcc').value=INV.occ||(th.id==='ny'?'ny':'bday');
   ['iGuests','iOcc','iDate','iTime','iAddr','iDress','iRsvp'].forEach(function(id){ $(id)[id==='iOcc'?'onchange':'oninput']=function(){
     INV={guests:$('iGuests').value,occ:$('iOcc').value,date:$('iDate').value,time:$('iTime').value,addr:$('iAddr').value,dressBy:(function(){ var m=INV.dressBy||{}; m[B.theme.id]=$('iDress').value; return m; })(),rsvp:$('iRsvp').value};
-    store('xpq_inv',JSON.stringify(INV)); drawInv();
+    if(CUR){ CUR.inv=INV; persistSoon(); } drawInv();
   }; });
+  $('iName').onchange=function(){ var v=this.value.trim(); QC.params.name=v; if(CUR){ CUR.params.name=v; persist(); } render(); showTab(); };
   drawInv();
 }
 function drawInv(){
@@ -1751,6 +1967,7 @@ function renderRemote(){
   var h='<div class="starbar">⭐ Звёзд собрано: '+total+' из '+(ST.length*3)+' · '+th.tok.e+' жетонов осталось: '+(RS.tokens.length>1?'команда 1 — '+RS.tokens[0]+', команда 2 — '+RS.tokens[1]:RS.tokens[0])+'</div>';
   h+='<div class="stations">'+ST.map(function(x,k){ return '<button data-go="'+k+'" class="'+(k===i?'cur ':'')+(RS.stars[k]?'ok':'')+'" title="'+esc(x.title)+'">'+(RS.stars[k]?'✓':(k+1))+'</button>'; }).join('')+'<button class="fin" title="Сокровище" data-go="fin">🎁</button></div>';
   h+='<div style="text-align:center;font-weight:800;margin-bottom:6px">Испытание '+s.i+' из '+s.n+' '+starStr(RS.stars[i])+'</div>';
+  if(s.beat) h+='<div class="rbeat">📖 '+esc(s.beat)+'</div>';
   h+='<div class="rbig"><div class="ct">'+esc(s.title)+'</div><div class="ck">'+esc(s.kid)+'</div><p style="margin-top:12px"><b>'+(s.isRiddle?'Ответ':'Кодовое слово')+':</b> <span class="code">'+esc((s.isRiddle?s.answers[0]:s.code).toUpperCase())+'</span></p>'+ladderHTML(s,RS.att[i]);
   if(RS.used[i]) h+='<div class="rdone">'+th.tok.e+' Жетон использован: скажите '+(s.isRiddle?'ответ':'кодовое слово')+' — <b>'+esc((s.isRiddle?s.answers[0]:s.code).toUpperCase())+'</b>.</div>';
   if(RS.stars[i]) h+='<div class="rdone">✅ Пройдено! Следующий тайник: '+s.next.e+' '+esc(s.next.n)+'</div>';
@@ -1854,9 +2071,65 @@ function saveForm(){ store('xpq_form',JSON.stringify({name:$('fName').value,kids
 function loadForm(){ try{ var f=JSON.parse(store('xpq_form')||'null'); if(!f) return; $('fName').value=f.name||''; setKids(f.kids||5); if(f.fmt) setFmt(f.kids<4&&f.fmt==='teams'?'team':f.fmt); $('fAge').value=f.age; $('fYoung').value=f.young; $('fOld').value=f.old; if(f.props) S.props=f.props; }catch(e){} }
 
 $('footTariffs').onclick=function(e){ e.preventDefault(); openTariffs(null); };
+/* ---------- мои квесты: хранение ---------- */
+function goal(n){ try{ if(window.ym&&CONFIG.YM) ym(CONFIG.YM,'reachGoal',n); }catch(e){} }
+function newQid(){ var a='abcdefghijkmnpqrstuvwxyz23456789',s=''; for(var i=0;i<10;i++) s+=a[Math.floor(Math.random()*a.length)]; return s; }
+function qAll(){ try{ return JSON.parse(store('xpq_quests')||'{}')||{}; }catch(e){ return {}; } }
+function qGet(id){ return qAll()[id]||null; }
+function qPutLocal(rec){ var all=qAll(); all[rec.id]=rec; var ids=Object.keys(all).sort(function(a,b){ return (all[b].updated||0)-(all[a].updated||0); }); ids.slice(60).forEach(function(k){ delete all[k]; }); store('xpq_quests',JSON.stringify(all)); }
+var PT=null;
+function persist(){ if(!CUR) return; clearTimeout(PT); CUR.updated=now(); qPutLocal(CUR); if(TOK&&!TEST) api('qsave',{token:TOK,quest:CUR}).catch(function(){}); }
+function persistSoon(){ clearTimeout(PT); PT=setTimeout(persist,800); }
+function syncQuests(){
+  if(TEST||!TOK) return Promise.resolve();
+  return api('qlist',{token:TOK}).then(function(d){
+    var all=qAll(), up=[];
+    (d.items||[]).forEach(function(r){ if(!all[r.id]||(r.updated||0)>(all[r.id].updated||0)) all[r.id]=r; });
+    Object.keys(all).forEach(function(k){ var srv=(d.items||[]).filter(function(r){return r.id===k;})[0]; if(!srv||(all[k].updated||0)>(srv.updated||0)) up.push(all[k]); });
+    store('xpq_quests',JSON.stringify(all));
+    up.slice(0,30).forEach(function(r){ api('qsave',{token:TOK,quest:r}).catch(function(){}); });
+    if(location.pathname.indexOf('/my/')===0) drawMy();
+  }).catch(function(){});
+}
+function qTitle(r){ var sy=Q.storyOf(r.params), th=Q.THEMES[r.params.theme]; return sy?sy.t:th.title; }
+function drawMy(){
+  var all=qAll(), ids=Object.keys(all).sort(function(a,b){ return (all[b].updated||0)-(all[a].updated||0); });
+  $('myNote').innerHTML=TOK?'Квесты хранятся в вашем профиле и доступны на любом устройстве.':'Квесты хранятся только в этом браузере. <a href="#" id="myLogin">Войдите</a>, чтобы они были доступны на любом устройстве и не потерялись.';
+  if($('myLogin')) $('myLogin').onclick=function(e){ e.preventDefault(); $('accBtn').click(); };
+  $('myList').innerHTML=ids.length?ids.map(function(id){ var r=all[id], p=r.params, th=Q.THEMES[p.theme]; if(!th) return '';
+    var ages=p.young===p.old?p.young+' '+(p.young<5?'года':'лет'):p.young+'–'+p.old+' лет', d=r.inv&&r.inv.date?' · 📅 '+fmtDate(r.inv.date):'';
+    return '<div class="qitem"><div class="e">'+th.e+'</div><div class="t"><b>'+esc(qTitle(r))+(r.saved?'<span class="qtag ok">сохранён</span>':'<span class="qtag dr">черновик</span>')+'</b><span>'+(p.name?esc(p.name)+' · ':'')+p.kids+' '+(p.kids===1?'ребёнок':p.kids<5?'ребёнка':'детей')+', '+ages+' · '+Q.PLACES[p.place].e+' '+Q.PLACES[p.place].l+d+' · изменён '+fmtD(r.updated||r.created)+'</span></div><a class="btn sm" href="/q/?id='+id+'&tab='+(r.saved?'letter':'invite')+'" data-open="'+id+'">Открыть</a><button class="btn sm ghost" data-del="'+id+'">🗑</button></div>';
+  }).join(''):'<p>Здесь будут ваши квесты. Соберите первый — это займёт 5 минут.</p>';
+  $$('#myList [data-open]').forEach(function(a){ a.onclick=function(e){ e.preventDefault(); nav(a.getAttribute('href')); }; });
+  $$('#myList [data-del]').forEach(function(b){ b.onclick=function(){
+    if(b.dataset.sure!=='1'){ b.dataset.sure='1'; b.textContent='Удалить?'; b.classList.remove('ghost'); setTimeout(function(){ if(b.isConnected){ b.dataset.sure=''; b.textContent='🗑'; b.classList.add('ghost'); } },4000); return; }
+    var all2=qAll(); delete all2[b.dataset.del]; store('xpq_quests',JSON.stringify(all2)); if(TOK&&!TEST) api('qdel',{token:TOK,id:b.dataset.del}).catch(function(){}); drawMy(); toast('Квест удалён'); }; });
+}
+$('myNew').onclick=function(){ startWizard(); };
+$('myBtn').onclick=function(e){ e.preventDefault(); nav('/my/'); };
+function openQuest(rec,t){
+  CUR=rec; var p=JSON.parse(JSON.stringify(rec.params));
+  QC=Q.generate(p); if(rec.taskIds&&rec.taskIds.length) QC.taskIds=rec.taskIds.slice();
+  INV=rec.inv||{}; certTouched=!!rec.cert;
+  render(); showOnly('resultScreen'); tab=TABS.indexOf(t)>=0?t:(rec.saved?'letter':'invite'); showTab();
+}
+function nav(path){ var from=location.href; history.pushState(null,'',path); route(); try{ if(window.ym) ym(114339420,'hit',location.href,{referer:from}); }catch(e){} }
+function route(){
+  var path=location.pathname, qs=new URLSearchParams(location.search);
+  if(path.indexOf('/q/')===0){
+    var id=qs.get('id'), rec=id&&qGet(id);
+    if(rec){ openQuest(rec,qs.get('tab')); return; }
+    if(TOK&&!TEST&&id){ showOnly('myScreen'); $('myList').innerHTML='<p class="note">Загружаю квест…</p>'; syncQuests().then(function(){ var r2=qGet(id); if(r2) openQuest(r2,qs.get('tab')); else { drawMy(); toast('Квест не найден'); } }); return; }
+    showOnly('myScreen'); drawMy(); if(id) toast('Квест не найден на этом устройстве — войдите в профиль, где он сохранён'); return;
+  }
+  if(path.indexOf('/my/')===0){ showOnly('myScreen'); drawMy(); return; }
+  if(path.indexOf('/create/')===0){ showOnly('wizard'); var th0=qs.get('theme'); if(th0&&!S.theme){ var c0=tg.querySelector('[data-k="'+th0+'"]'); if(c0){ c0.click(); return; } } go(S.theme?Math.max(1,S.step||1):1); return; }
+  showOnly('landing');
+}
 /* ---------- главная ---------- */
 function showLanding(on){ document.body.classList.toggle('mode-landing',!!on); window.scrollTo(0,0); }
-function startWizard(theme){ showLanding(false); $('resultScreen').style.display='none'; $('wizard').style.display='block'; if(theme){ var c=tg.querySelector('[data-k="'+theme+'"]'); if(c){ c.click(); return; } } go(1); }
+function showOnly(w){ showLanding(w==='landing'); ['wizard','resultScreen','myScreen'].forEach(function(id){ $(id).style.display=id===w?'block':'none'; }); window.scrollTo(0,0); }
+function startWizard(theme){ EDIT_ID=null; history.pushState(null,'','/create/'+(theme?'?theme='+theme:'')); showOnly('wizard'); if(theme){ var c=tg.querySelector('[data-k="'+theme+'"]'); if(c){ c.click(); return; } } go(1); }
 (function(){
   var lt=$('landThemes'), h='';
   Object.keys(Q.THEMES).forEach(function(k){ var th=Q.THEMES[k], gen=GEN(th); h+='<div class="tcard '+k+'" data-lt="'+k+'" style="background:'+th.pal.soft+';color:'+th.pal.main+'"><div class="tstrip">'+(gen?strip(th):'')+'</div><span class="e">'+th.e+'</span><b>'+th.name+'</b><span>'+esc(th.about)+'</span>'+(CONFIG.FREE_THEMES.indexOf(k)>=0?'<span class="tlock" style="background:#e9f7ef;color:#1f8a4c">Бесплатно</span>':'')+'</div>'; });
@@ -1866,11 +2139,10 @@ function startWizard(theme){ showLanding(false); $('resultScreen').style.display
   CONFIG.TARIFFS.forEach(function(x){ t+='<div class="tariff">'+(x.hit?'<span class="hit">Выгодно</span>':'')+'<b>'+esc(x.title)+'</b><div class="pr">'+x.price.toLocaleString('ru-RU')+' ₽'+(x.per?' <small>/ '+x.per+'</small>':'')+'</div><p>'+esc(x.desc)+'</p></div>'; });
   $('landTariffs').innerHTML=t;
   $$('[data-start]').forEach(function(b){ b.onclick=function(){ startWizard(); }; });
-  document.querySelector('.logo').onclick=function(){ showLanding(true); };
+  document.querySelector('.logo').onclick=function(){ nav('/'); };
 })();
-var firstVisit=!store('xpq_form') && !new URLSearchParams(location.search).get('InvId') && !Q.decodePlayer(location.hash);
-showLanding(firstVisit);
-initPro(); setKids(5); loadForm(); drawProps(); go(1); afterPayment(); recheck(); loadProfile();
+initPro(); setKids(5); loadForm(); drawProps(); go(1); route(); afterPayment(); recheck(); loadProfile();
+window.addEventListener('popstate',route);
 var d0=Q.decodePlayer(location.hash); if(d0) openPlayer(d0,false);
 window.addEventListener('hashchange',function(){ var d2=Q.decodePlayer(location.hash); if(d2) openPlayer(d2,false); });
 })();
