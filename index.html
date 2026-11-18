@@ -43,6 +43,9 @@ button,input,select,textarea{font:inherit;color:inherit}
 .acc-btn+.pro-badge{margin-left:8px}
 .acc-btn+.acc-btn{margin-left:8px}
 a.acc-btn{text-decoration:none}
+.brk{display:none}
+@media(max-width:600px){.top{gap:6px;row-gap:8px;margin-bottom:10px}.top .tag{display:none}.logo{font-size:21px}.acc-btn{font-size:12px;padding:5px 9px;max-width:120px}#myBtn{margin-left:auto}.acc-btn+.acc-btn{margin-left:0}.brk{display:block;flex-basis:100%;height:0}.pro-badge{margin-left:0;font-size:12px;padding:4px 10px}.acc-btn+.pro-badge{margin-left:0}}
+@media(max-width:380px){.top .mt{display:none}}
 .acc-keys{margin:10px 0;padding:0;list-style:none}.acc-keys li{border:1px solid #e3e1db;border-radius:12px;padding:10px 12px;margin-bottom:8px;font-size:14px}.acc-keys b{font-family:monospace;font-size:14px}
 .tg-btn{background:#2aabee!important;color:#fff!important;width:100%}
 .tg-qr{display:flex;gap:14px;align-items:center;background:#f4f8fb;border-radius:14px;padding:12px;margin:12px 0}.tg-qr .q{background:#fff;padding:8px;border-radius:10px;flex:none}.tg-qr .q img,.tg-qr .q canvas{display:block;width:120px!important;height:120px!important}
@@ -190,7 +193,8 @@ body.th-gen .deco-strip{display:block;height:26px;background:none}
 .rnav{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-bottom:16px}
 @media(max-width:700px){.rnav{grid-template-columns:repeat(6,1fr)}.rnav button span{display:none}}
 .invform{display:grid;grid-template-columns:1fr 1fr;gap:4px 14px;margin-bottom:16px}
-@media(max-width:700px){.invform{grid-template-columns:1fr}}
+@media(max-width:700px){.invform{grid-template-columns:minmax(0,1fr)}}
+.invform>div{min-width:0}.invform input,.invform select,.invform textarea{box-sizing:border-box;min-width:0;max-width:100%}.invform .row2>div{min-width:0}
 .invform .full{grid-column:1/-1}
 .invform input[type=date],.invform input[type=time]{width:100%;padding:12px 14px;border:1px solid #d8d6d0;border-radius:12px;font-size:16px;background:#fff}
 .invgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
@@ -325,7 +329,7 @@ table.hide th{color:var(--muted);font-weight:500;font-size:12px;text-transform:u
 .cert.th-pir{background-image:var(--parch);background-color:var(--soft)}
 .cert .corner{position:absolute;font-size:40px}
 .cert .ce{font-size:70px}
-.cert h2{font-size:52px;margin:4px 0;color:var(--main);letter-spacing:6px}
+.cert h2{font-size:clamp(24px,8.5vw,52px);margin:4px 0;color:var(--main);letter-spacing:clamp(1px,.9vw,6px);overflow-wrap:normal}
 .cert .role{font-size:22px;margin-bottom:22px}
 .cert .names{font-family:"Marck Script",cursive;font-size:42px;color:var(--main);margin:6px 0 16px}
 .cert .why{font-size:18px}
@@ -333,6 +337,7 @@ table.hide th{color:var(--muted);font-weight:500;font-size:12px;text-transform:u
 .cert .site{font-size:11px;opacity:.5;margin-top:20px}
 .cert .stripT{position:absolute;left:30px;right:30px;top:24px;height:34px;background-repeat:repeat-x;background-size:auto 34px}
 .cert.th-ny .stripT{background-image:var(--garland)}
+@media(max-width:600px){.cert{padding:28px 14px;border-width:8px;outline-offset:-18px;min-height:0}.cert h2{font-size:clamp(20px,7.2vw,40px);letter-spacing:1px}.cert .role{font-size:18px}.cert .names{font-size:34px}}
 
 /* пульт */
 .rbig{background:var(--soft);border:3px solid var(--main);border-radius:18px;padding:18px;color:var(--ink);margin-bottom:12px}
@@ -406,7 +411,7 @@ footer a{color:inherit}
   <header class="top no-print">
     <div class="logo"><b>XPlain</b><i>Quests</i></div>
     <div class="tag">Квест на детский праздник за 5 минут</div>
-    <a class="acc-btn" id="myBtn" href="/my/">📚 Мои квесты</a><button class="acc-btn" id="accBtn" type="button">👤 Войти</button><div class="pro-badge" id="proBadge"></div>
+    <a class="acc-btn" id="myBtn" href="/my/">📚 <span class="mt">Мои </span>квесты</a><button class="acc-btn" id="accBtn" type="button">👤 Войти</button><div class="brk"></div><div class="pro-badge" id="proBadge"></div>
   </header>
 
   <!-- ================= МАСТЕР ================= -->
