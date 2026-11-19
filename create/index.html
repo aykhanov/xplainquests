@@ -1842,8 +1842,6 @@ $('proBadge').onclick=function(){ if(TEST){ simFree=!simFree; initPro(); toast(s
 function needPro(){ return false; } // выбор платных опций разрешён, оплата спрашивается при сборке квеста
 
 var PAYP=null, PAYT='pass';
-/* ВРЕМЕННО: разовая проверка оплаты за 10 ₽ — открыть сайт с ?testpay=1. Удалить после теста. */
-if(/[?&]testpay=1/.test(location.search)){ CONFIG.TARIFFS.push({id:'test',title:'Тест оплаты',price:10,desc:'Разовая проверка оплаты: полный доступ на 1 день.'}); setTimeout(function(){ openTariffs(null,null,'test'); },600); }
 function openTariffs(p,reason,pre){ goal('tariffs_open');
   PAYP=p||null;
   if(!PAYP || PAYT==='one' && !PAYP) PAYT=PAYP?'one':'pass';
