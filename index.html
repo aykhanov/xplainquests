@@ -147,11 +147,10 @@ input[type=text],input[type=tel],select,textarea{width:100%;padding:12px 14px;bo
 textarea{min-height:64px;resize:vertical}
 .tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 @media(max-width:700px){.tgrid{grid-template-columns:1fr}}
-.tcard{border:3px solid transparent;border-radius:18px;padding:22px 16px;text-align:center;cursor:pointer;position:relative;overflow:hidden;transition:transform .15s,box-shadow .15s;background-image:linear-gradient(180deg,transparent 35%,color-mix(in srgb,currentColor 9%,transparent));box-shadow:inset 0 0 0 1.5px color-mix(in srgb,currentColor 22%,transparent),0 10px 24px -14px rgba(20,20,30,.45)}
-.tcard:hover{box-shadow:inset 0 0 0 1.5px color-mix(in srgb,currentColor 35%,transparent),0 14px 28px -14px rgba(20,20,30,.5)}
+.tcard{border:3px solid transparent;border-radius:18px;padding:22px 16px;text-align:center;cursor:pointer;position:relative;overflow:hidden;transition:transform .15s;background-image:linear-gradient(180deg,transparent 35%,color-mix(in srgb,currentColor 9%,transparent));box-shadow:0 1px 2px rgba(20,20,30,.06),0 10px 24px -12px rgba(20,20,30,.38);backface-visibility:hidden;transform:translateZ(0)}
+.tcard:hover{transform:translateY(-3px) translateZ(0)}
 .tcard.ny::after{content:'';position:absolute;left:0;right:0;bottom:0;height:9px;background:repeating-linear-gradient(-45deg,#d62839 0 9px,#fff 9px 18px)}
 .tcard.ny b{color:#b3202f}
-.tcard:hover{transform:translateY(-3px)}
 .tcard .e{font-size:56px;display:block}
 .tcard b{display:block;font-size:20px;margin-top:6px}
 .tcard span{font-size:14px;opacity:.8}
