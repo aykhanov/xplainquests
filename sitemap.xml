@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://xplainquests.ru/</loc><lastmod>2026-11-19</lastmod><priority>1.0</priority></url>
-  <url><loc>https://xplainquests.ru/kvest-piraty/</loc><lastmod>2026-11-18</lastmod><priority>0.8</priority></url>
-  <url><loc>https://xplainquests.ru/kvest-kosmos/</loc><lastmod>2026-11-18</lastmod><priority>0.8</priority></url>
-  <url><loc>https://xplainquests.ru/novogodnij-kvest/</loc><lastmod>2026-11-18</lastmod><priority>0.8</priority></url>
-  <url><loc>https://xplainquests.ru/detektivnyj-kvest/</loc><lastmod>2026-11-18</lastmod><priority>0.8</priority></url>
-  <url><loc>https://xplainquests.ru/volshebnyj-kvest/</loc><lastmod>2026-11-18</lastmod><priority>0.8</priority></url>
-  <url><loc>https://xplainquests.ru/kvest-dinozavry/</loc><lastmod>2026-11-18</lastmod><priority>0.8</priority></url>
-  <url><loc>https://xplainquests.ru/kvest-supergeroi/</loc><lastmod>2026-11-18</lastmod><priority>0.8</priority></url>
+  <url><loc>https://xplainquests.ru/kvest-piraty/</loc><lastmod>2026-11-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://xplainquests.ru/kvest-kosmos/</loc><lastmod>2026-11-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://xplainquests.ru/novogodnij-kvest/</loc><lastmod>2026-11-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://xplainquests.ru/detektivnyj-kvest/</loc><lastmod>2026-11-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://xplainquests.ru/volshebnyj-kvest/</loc><lastmod>2026-11-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://xplainquests.ru/kvest-dinozavry/</loc><lastmod>2026-11-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://xplainquests.ru/kvest-supergeroi/</loc><lastmod>2026-11-19</lastmod><priority>0.8</priority></url>
   <url><loc>https://xplainquests.ru/kvest-princessy/</loc><lastmod>2026-11-19</lastmod><priority>0.8</priority></url>
   <url><loc>https://xplainquests.ru/kvest-shpiony/</loc><lastmod>2026-11-19</lastmod><priority>0.8</priority></url>
   <url><loc>https://xplainquests.ru/nauchnyj-kvest/</loc><lastmod>2026-11-19</lastmod><priority>0.8</priority></url>
@@ -19,8 +19,16 @@
   <url><loc>https://xplainquests.ru/kvest-1-sentyabrya/</loc><lastmod>2026-11-19</lastmod><priority>0.8</priority></url>
   <url><loc>https://xplainquests.ru/kvest-hellouin/</loc><lastmod>2026-11-19</lastmod><priority>0.8</priority></url>
   <url><loc>https://xplainquests.ru/kvest-poisk-podarka/</loc><lastmod>2026-11-19</lastmod><priority>0.8</priority></url>
-  <url><loc>https://xplainquests.ru/kvest-dlya-podrostkov/</loc><lastmod>2026-11-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://xplainquests.ru/kvest-pobeg-iz-komnaty/</loc><lastmod>2026-11-19</lastmod><priority>0.8</priority></url>
   <url><loc>https://xplainquests.ru/semejnyj-kvest/</loc><lastmod>2026-11-19</lastmod><priority>0.8</priority></url>
-  <url><loc>https://xplainquests.ru/offer.html</loc><lastmod>2026-11-15</lastmod><priority>0.3</priority></url>
-  <url><loc>https://xplainquests.ru/privacy.html</loc><lastmod>2026-11-15</lastmod><priority>0.3</priority></url>
+  <url><loc>https://xplainquests.ru/kvest-na-den-rozhdeniya-4-goda/</loc><lastmod>2026-11-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://xplainquests.ru/kvest-na-den-rozhdeniya-5-let/</loc><lastmod>2026-11-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://xplainquests.ru/kvest-na-den-rozhdeniya-6-let/</loc><lastmod>2026-11-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://xplainquests.ru/kvest-na-den-rozhdeniya-7-let/</loc><lastmod>2026-11-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://xplainquests.ru/kvest-na-den-rozhdeniya-8-let/</loc><lastmod>2026-11-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://xplainquests.ru/kvest-na-den-rozhdeniya-9-let/</loc><lastmod>2026-11-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://xplainquests.ru/kvest-na-den-rozhdeniya-10-let/</loc><lastmod>2026-11-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://xplainquests.ru/kvest-v-detskom-sadu/</loc><lastmod>2026-11-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://xplainquests.ru/kvest-v-shkole/</loc><lastmod>2026-11-19</lastmod><priority>0.8</priority></url>
+  <url><loc>https://xplainquests.ru/zagadki-dlya-kvesta/</loc><lastmod>2026-11-19</lastmod><priority>0.8</priority></url>
 </urlset>
