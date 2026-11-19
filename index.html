@@ -278,7 +278,7 @@ table.hide th{color:var(--muted);font-weight:500;font-size:12px;text-transform:u
 .tokens{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;padding:20px;border:3px dashed var(--main);border-radius:18px;background:var(--soft);margin-top:16px;break-inside:avoid}
 .token{width:52mm;height:52mm;box-sizing:border-box;border-radius:50%;border:4px solid var(--main);background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--main);font-weight:700;font-size:13px;line-height:1.2;padding:5mm 9mm;overflow-wrap:break-word;outline:2px dashed var(--accent);outline-offset:4px}
 .token .te{font-size:52px;line-height:1.1}
-.rbtns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.rbtns .btn{flex:1 1 130px}.rbtns #rOk{flex:1 1 100%}
+.rbtns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.rbtns .btn{flex:1 1 130px;white-space:nowrap}.rbtns #rOk{flex:1 1 100%}
 .rbtns .btn{padding:14px 8px}
 .stations{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:4px 0 12px}
 .stations button{width:42px;height:42px;border-radius:50%;border:2px solid #d8d6d0;background:#fff;font-weight:800;font-size:15px;cursor:pointer;position:relative}
@@ -695,7 +695,7 @@ footer a{color:inherit}
       <figure><img loading="lazy" src="/ex/ex-card.webp" width="900" height="460" alt="Карточка с заданием"><figcaption><b>Карточки заданий</b> — строчка сюжета, задание под возраст и подсказка к следующему тайнику</figcaption></figure>
       <figure><img loading="lazy" src="/ex/ex-cert.webp" width="900" height="638" alt="Сертификат с именами детей"><figcaption><b>Сертификат</b> — с именами всех участников, вручается в финале</figcaption></figure>
       <figure><img loading="lazy" src="/ex/ex-invite.webp" width="600" height="636" alt="Именное приглашение гостю"><figcaption><b>Приглашения</b> — именные открытки гостям: распечатать или отправить в мессенджер</figcaption></figure>
-      <figure><img loading="lazy" src="/ex/ex-remote.webp" width="560" height="985" alt="Пульт ведущего на телефоне"><figcaption><b>Пульт ведущего</b> — текст для каждой станции, ответы, таймер и звуки на телефоне</figcaption></figure>
+      <figure><img loading="lazy" src="/ex/ex-remote.webp" width="560" height="1073" alt="Пульт ведущего на телефоне"><figcaption><b>Пульт ведущего</b> — текст для каждой станции, ответы, таймер и звуки на телефоне</figcaption></figure>
     </div>
     <div class="exnav"><button class="btn sm ghost" type="button" data-exstep="-1" aria-label="Назад">←</button><button class="btn" type="button" data-start>✨ Собрать такой квест бесплатно</button><button class="btn sm ghost" type="button" data-exstep="1" aria-label="Дальше">→</button></div>
   </div></div>
@@ -721,7 +721,7 @@ if('IntersectionObserver' in window&&a){ var io=new IntersectionObserver(functio
 
 <script>
 (function(){
-var APP='/app.js?v=6b19392416',st=0,cbs=[],d=document,de=d.documentElement;
+var APP='/app.js?v=ebad511f3e',st=0,cbs=[],d=document,de=d.documentElement;
 function run(){ var a=cbs; cbs=[]; a.forEach(function(f){ try{ f(); }catch(e){} }); }
 function load(cb){ if(cb) cbs.push(cb); if(st===2){ run(); return; } if(st) return; st=1;
   var s=d.createElement('script'); s.src=APP; s.async=true;
