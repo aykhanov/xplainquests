@@ -673,7 +673,7 @@ var CONFIG = {
   SITE_LABEL: "XPlainQuests",          // подпись мелким шрифтом на материалах (в тарифе Профи — своя)
   OFFER_URL: "offer.html",
   PRIVACY_URL: "privacy.html",
-  FREE_THEMES: ["pir", "spa"],
+  FREE_THEMES: ["pir", "spa", "gift"],
   TARIFFS: [
     {id:"one",  title:"Один квест",          price:549,  per:"",          desc:"Полная версия квеста, который вы сейчас собрали: все темы, 45–60 минут, команды и личный зачёт, QR‑коды, приглашения картинками."},
     {id:"pass", title:"Праздничный пропуск", price:1290, per:"30 дней",   desc:"Без ограничений на месяц: день рождения, утренник и Новый год — сколько угодно квестов.", hit:true},
@@ -701,7 +701,7 @@ var THEMES = {
     codes:['РАКЕТА','ОРБИТА','КОМЕТА','ЛУНА','ЗВЕЗДА','ПЛАНЕТА','СПУТНИК','МЕТЕОР','ГАЛАКТИКА','СКАФАНДР','МАРС','ЛУНОХОД'],
     letter:'Говорит {leader}. Тревога! {Villain} взломал бортовой компьютер и спрятал {treasure} где‑то на нашей станции. Чтобы вернуть его, пройдите {n} космических испытаний. Каждое испытание откроет координаты следующего. Только настоящие космонавты справятся!',
     pal:{main:'#3b1f6b',accent:'#ff8c42',soft:'#f3eefc',ink:'#1d1530'}},
-  ny:{id:'ny',inv:'Дед Мороз просит помощи: нужно спасти Новый год!',dress:'что‑нибудь новогоднее: колпак, мишура или свитер с оленями',tok:{e:'❄️',one:'волшебная снежинка',three:'3 волшебные снежинки'},name:'Новый год',e:'🎄',wm:'🎄',corners:['🎄','❄️','🎁','⭐'],about:'Вернуть Деду Морозу мешок с подарками',title:'Спасти Новый год!',heroes:'помощники Деда Мороза',
+  ny:{id:'ny',g:'season',inv:'Дед Мороз просит помощи: нужно спасти Новый год!',dress:'что‑нибудь новогоднее: колпак, мишура или свитер с оленями',tok:{e:'❄️',one:'волшебная снежинка',three:'3 волшебные снежинки'},name:'Новый год',e:'🎄',wm:'🎄',corners:['🎄','❄️','🎁','⭐'],about:'Вернуть Деду Морозу мешок с подарками',title:'Спасти Новый год!',heroes:'помощники Деда Мороза',
     leader:'Дед Мороз',villain:'Вредная Вьюга',vf:'а',treasure:'мешок с подарками',
     coinsNom:'волшебные снежинки',coinsGen:'волшебных снежинок',shipAcc:'волшебные сани с оленями',
     sounds:'вьюгу, звон бубенцов и хруст снега',greet:'Дорогие {who}!',greet1:'Здравствуй{nm}!',certRole:'главного помощника Деда Мороза',
@@ -841,7 +841,7 @@ var THEMES = {
     letter:'Пишет {leader}. Я привёз тебе {treasure}, но {villain} утащил его и спрятал {placeIn}! Он оставил {n} подсказок — разгадай их по порядку, и последняя приведёт прямо к подарку.',
     pal:{main:'#c0265e',accent:'#f59e0b',soft:'#fdf0f4',ink:'#40101f'}},
 
-  esc:{id:'esc',g:'format',inv:'{leader} бросает вызов: сможете выбраться из комнаты за час?',dress:'удобная одежда — придётся много думать и немного бегать',tok:{e:'💾',one:'чип доступа',three:'3 чипа доступа'},name:'Побег из комнаты',e:'🔒',wm:'🧩',strip:'🔒 🧩 💡 ',corners:['🔒','🧩','💾','⏱️'],about:'Для 10–14 лет: сложные шифры и логика на время',title:'Запертая комната',heroes:'команда взломщиков',
+  esc:{id:'esc',g:'format',inv:'{leader} бросает вызов: сможете выбраться из комнаты за час?',dress:'удобная одежда — придётся много думать и немного бегать',tok:{e:'💾',one:'чип доступа',three:'3 чипа доступа'},name:'Побег из комнаты',e:'🗝️',wm:'🧩',strip:'🗝️ 🧩 💡 ',corners:['🗝️','🧩','💾','⏱️'],about:'Для 10–14 лет: сложные шифры и логика на время',title:'Запертая комната',heroes:'команда взломщиков',
     leader:'Хакер Пиксель',villain:'компьютер СИГМА',vf:'',treasure:'ключ от выхода и награду',supplies:'энергетический перекус',
     coinsNom:'чипы доступа',coinsGen:'чипов доступа',shipAcc:'лифт на свободу',
     sounds:'тиканье таймера, писк сигнализации и щелчок замка',greet:'Внимание, {who}!',greet1:'Игрок{nm}, система запущена!',certRole:'мастера головоломок',
@@ -2186,7 +2186,7 @@ function openTariffs(p,reason,pre){ goal('tariffs_open');
   if(PAYP) PAYT='one';
   if(pre && pre!=='one') PAYT=pre;
   var r=PAYP?needsPro(PAYP):[];
-  $('payReason').innerHTML=reason?'<div class="reason">'+esc(reason)+'</div>':(r.length?'<div class="reason">В бесплатной версии нет: '+esc(r.join(', '))+'. Выберите тариф — или соберите бесплатный вариант.</div>':'<p class="note">Бесплатно: темы «Пираты» и «Космос», 30 минут, одной командой, бумажные карточки, приглашения текстом.</p>');
+  $('payReason').innerHTML=reason?'<div class="reason">'+esc(reason)+'</div>':(r.length?'<div class="reason">В бесплатной версии нет: '+esc(r.join(', '))+'. Выберите тариф — или соберите бесплатный вариант.</div>':'<p class="note">Бесплатно: темы «Пираты», «Космос» и «Поиск подарка», 30 минут, одной командой, бумажные карточки, приглашения текстом.</p>');
   drawTariffs();
   $('payEmail').value=store('xpq_email')||(PROF&&PROF.email)||'';
   $('offerLink').href=CONFIG.OFFER_URL; $('privLink').href=CONFIG.PRIVACY_URL;
@@ -2250,7 +2250,7 @@ function freeFallback(){
   $$('#oDur .opt').forEach(function(x){x.classList.toggle('on',x.dataset.v==='30');});
   $$('#oMode .opt').forEach(function(x){x.classList.toggle('on',x.dataset.v==='paper');});
   setFmt('team');
-  if(CONFIG.FREE_THEMES.indexOf(S.theme)<0){ $('resultScreen').style.display='none'; $('wizard').style.display='block'; go(1); toast('Выберите бесплатную тему: «Пираты» или «Космос»'); return; }
+  if(CONFIG.FREE_THEMES.indexOf(S.theme)<0){ $('resultScreen').style.display='none'; $('wizard').style.display='block'; go(1); toast('Выберите бесплатную тему: «Пираты», «Космос» или «Поиск подарка»'); return; }
   make();
 }
 function formSnap(){ return {theme:S.theme,fmt:S.fmt,kids:S.kids,place:S.place,dur:S.dur,mode:S.mode,props:S.props,name:$('fName').value,age:$('fAge').value,young:$('fYoung').value,old:$('fOld').value}; }
@@ -2983,7 +2983,7 @@ function startWizard(theme){ EDIT_ID=null; history.pushState(null,'','/create/'+
   TGROUPS.forEach(function(gr){ h+='<div class="tgh">'+gr[1]+'</div>'; themeKeys(gr[0]).forEach(function(k){ var th=Q.THEMES[k], gen=GEN(th); h+='<div class="tcard '+k+'" data-lt="'+k+'" style="background:'+th.pal.soft+';color:'+th.pal.main+'"><div class="tstrip">'+(gen?strip(th):'')+'</div><span class="e">'+th.e+'</span><b>'+th.name+'</b><span>'+esc(th.about)+'</span>'+(CONFIG.FREE_THEMES.indexOf(k)>=0?'<span class="tfree">Бесплатно</span>':'')+'</div>'; }); });
   lt.innerHTML=h;
   $$('[data-lt]',lt).forEach(function(c){ c.onclick=function(){ startWizard(c.dataset.lt); }; });
-  var t='<div class="tariff" data-lt0="free"><b>Бесплатно</b><div class="pr">0 ₽</div><ul><li>Пираты и Космос</li><li>30 минут, 6 испытаний</li><li>Одной командой</li><li>Бумажные карточки</li><li>Приглашения текстом</li></ul><span class="tgo">Собрать квест →</span></div>';
+  var t='<div class="tariff" data-lt0="free"><b>Бесплатно</b><div class="pr">0 ₽</div><ul><li>Пираты, Космос и Поиск подарка</li><li>30 минут, 6 испытаний</li><li>Одной командой</li><li>Бумажные карточки</li><li>Приглашения текстом</li></ul><span class="tgo">Собрать квест →</span></div>';
   CONFIG.TARIFFS.forEach(function(x){ t+='<div class="tariff" data-lt0="'+x.id+'">'+(x.hit?'<span class="hit">Выгодно</span>':'')+'<b>'+esc(x.title)+'</b><div class="pr">'+x.price.toLocaleString('ru-RU')+' ₽'+(x.per?' <small>/ '+x.per+'</small>':'')+'</div><p>'+esc(x.desc)+'</p><span class="tgo">Выбрать →</span></div>'; });
   $('landTariffs').innerHTML=t;
   $$('#landTariffs [data-lt0]').forEach(function(c){ c.onclick=function(){ var id=c.dataset.lt0; if(id==='free') startWizard(); else openTariffs(null,null,id); }; });
